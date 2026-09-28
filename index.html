@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mathtools · 수학 인터랙티브 도구</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9edf1; --paper:#f7f9fb; --ink:#18212c; --muted:#5d6978; --rule:#cfd6de; --acc:#b3246f; --b:#2352c4;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --acc:#ff6fb0; --b:#6f9bff; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --acc:#ff6fb0; --b:#6f9bff; color-scheme:dark; }
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; line-height:1.6}
+main{max-width:760px; margin:0 auto; padding:56px 20px 64px}
+h1{margin:0 0 6px; font-size:28px; letter-spacing:-.01em}
+.lead{margin:0 0 36px; color:var(--muted)}
+.m{font-family:"Noto Serif",Georgia,serif; font-style:italic}
+ul{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+a.tool{display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:center; text-decoration:none; color:inherit;
+  background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:16px}
+a.tool:hover{border-color:var(--acc)}
+a.tool:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+a.tool svg{width:72px; height:56px}
+.t{font-weight:700; font-size:17px}
+.d{color:var(--muted); font-size:14px; margin-top:2px}
+footer{margin-top:40px; font-size:13px; color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <h1>mathtools</h1>
+  <p class="lead">점을 직접 움직이며 확인하는 수학 인터랙티브 도구 모음입니다.</p>
+  <ul>
+    <li>
+      <a class="tool" href="/tri-bisector/">
+        <svg viewBox="0 0 72 56" aria-hidden="true">
+          <line x1="14" y1="44" x2="66" y2="44" stroke="var(--rule)" stroke-width="2" stroke-dasharray="3 3"/>
+          <line x1="30" y1="44" x2="62" y2="44" stroke="var(--ink)" stroke-width="2"/>
+          <line x1="26" y1="12" x2="30" y2="44" stroke="var(--b)" stroke-width="2.5"/>
+          <line x1="26" y1="12" x2="62" y2="44" stroke="#c98a0b" stroke-width="2.5"/>
+          <line x1="26" y1="12" x2="8" y2="44" stroke="var(--acc)" stroke-width="2"/>
+          <circle cx="8" cy="44" r="3" fill="var(--acc)"/>
+        </svg>
+        <div>
+          <div class="t">외각의 이등분선 정리</div>
+          <div class="d">삼각형의 꼭짓점을 움직이며 <span class="m">AB</span> : <span class="m">AC</span> = <span class="m">DB</span> : <span class="m">DC</span>를 확인합니다.</div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <footer>새 도구가 추가되면 이 목록에 이어서 올라갑니다.</footer>
+</main>
+</body>
+</html>
