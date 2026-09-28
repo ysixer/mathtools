@@ -3,79 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>mathtools · 수학 인터랙티브 도구</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+<title>mathtools · 점을 움직이며 이해하는 수학</title>
+<meta name="description" content="한국 중·고등학교 수학 교육과정의 정리를 직접 조작하며 확인하는 인터랙티브 도구 모음">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#e9edf1; --paper:#f7f9fb; --ink:#18212c; --muted:#5d6978; --rule:#cfd6de; --acc:#b3246f; --b:#2352c4;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-  color-scheme:light;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --acc:#ff6fb0; --b:#6f9bff; color-scheme:dark; }
-}
-:root[data-theme="dark"]{ --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --acc:#ff6fb0; --b:#6f9bff; color-scheme:dark; }
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0; background:var(--bg); color:var(--ink);
-  font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; line-height:1.6}
-main{max-width:760px; margin:0 auto; padding:56px 20px 64px}
-h1{margin:0 0 6px; font-size:28px; letter-spacing:-.01em}
-.lead{margin:0 0 36px; color:var(--muted)}
-.m{font-family:"Noto Serif",Georgia,serif; font-style:italic}
-ul{list-style:none; margin:0; padding:0; display:grid; gap:12px}
-a.tool{display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:center; text-decoration:none; color:inherit;
-  background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:16px}
-a.tool:hover{border-color:var(--acc)}
-a.tool:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
-a.tool svg{width:72px; height:56px}
-.t{font-weight:700; font-size:17px}
-.d{color:var(--muted); font-size:14px; margin-top:2px}
-footer{margin-top:40px; font-size:13px; color:var(--muted)}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
 </head>
-<body>
+<body class="landing">
 <main>
   <h1>mathtools</h1>
-  <p class="lead">점을 직접 움직이며 확인하는 수학 인터랙티브 도구 모음입니다.</p>
-  <ul>
-    <li>
-      <a class="tool" href="/tri-bisector/">
-        <svg viewBox="0 0 72 56" aria-hidden="true">
-          <line x1="14" y1="44" x2="66" y2="44" stroke="var(--rule)" stroke-width="2" stroke-dasharray="3 3"/>
-          <line x1="30" y1="44" x2="62" y2="44" stroke="var(--ink)" stroke-width="2"/>
-          <line x1="26" y1="12" x2="30" y2="44" stroke="var(--b)" stroke-width="2.5"/>
-          <line x1="26" y1="12" x2="62" y2="44" stroke="#c98a0b" stroke-width="2.5"/>
-          <line x1="26" y1="12" x2="8" y2="44" stroke="var(--acc)" stroke-width="2"/>
-          <circle cx="8" cy="44" r="3" fill="var(--acc)"/>
-        </svg>
-        <div>
-          <div class="t">외각의 이등분선 정리</div>
-          <div class="d">삼각형의 꼭짓점을 움직이며 <span class="m">AB</span> : <span class="m">AC</span> = <span class="m">DB</span> : <span class="m">DC</span>를 확인합니다.</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a class="tool" href="/inscribed-angle/">
-        <svg viewBox="0 0 72 56" aria-hidden="true">
-          <circle cx="36" cy="28" r="23" fill="none" stroke="var(--ink)" stroke-width="2"/>
-          <path d="M16 39 A23 23 0 0 0 56 39" fill="none" stroke="var(--b)" stroke-width="4" opacity=".75"/>
-          <line x1="36" y1="28" x2="16" y2="39" stroke="var(--b)" stroke-width="2"/>
-          <line x1="36" y1="28" x2="56" y2="39" stroke="var(--b)" stroke-width="2"/>
-          <line x1="28" y1="6.5" x2="16" y2="39" stroke="var(--acc)" stroke-width="2.5"/>
-          <line x1="28" y1="6.5" x2="56" y2="39" stroke="var(--acc)" stroke-width="2.5"/>
-          <circle cx="28" cy="6.5" r="3" fill="var(--acc)"/>
-        </svg>
-        <div>
-          <div class="t">원주각 정리</div>
-          <div class="d">원 위의 점을 움직여도 원주각은 중심각의 절반으로 일정합니다.</div>
-        </div>
-      </a>
-    </li>
-  </ul>
-  <footer>새 도구가 추가되면 이 목록에 이어서 올라갑니다.</footer>
+  <p class="lead">점을 직접 움직이며 확인하는 수학 정리 모음입니다. 2022 개정 교육과정의 학년·과목 순서로 정리했어요.</p>
+  <ul class="jump"><li><a href="#m1">중학교 1학년</a></li><li><a href="#m2">중학교 2학년</a></li><li><a href="#m3">중학교 3학년</a></li><li><a href="#h1">고등학교 1학년</a></li><li><a href="#h2">고등학교 선택 과목</a></li></ul>
+    <section class="grade" id="m1">
+      <h2>중학교 1학년 <small>수학 1 · 도형과 측정</small></h2>
+      <ul class="cards">
+        <li><a class="card" href="/m1/exterior-angle/"><span class="unit">삼각형의 성질</span><span class="t">삼각형의 외각</span><span class="d">외각의 크기가 이웃하지 않는 두 내각의 합과 같음을 확인합니다.</span></a></li>
+        <li><a class="card" href="/m1/polygon-angles/"><span class="unit">다각형</span><span class="t">다각형의 내각의 합</span><span class="d">n각형을 삼각형으로 나누어 내각의 합 180°×(n−2)를 확인합니다.</span></a></li>
+        <li><a class="card" href="/m1/sector/"><span class="unit">원과 부채꼴</span><span class="t">부채꼴의 호와 넓이</span><span class="d">호의 길이와 넓이가 중심각에 정비례함을 막대로 비교합니다.</span></a></li>
+      </ul>
+    </section>
+    <section class="grade" id="m2">
+      <h2>중학교 2학년 <small>수학 2 · 도형의 성질과 닮음</small></h2>
+      <ul class="cards">
+        <li><a class="card" href="/m2/isosceles-centers/"><span class="unit">삼각형의 성질</span><span class="t">삼각형의 외심과 내심</span><span class="d">수직이등분선·각의 이등분선이 한 점에서 만나는 모습과 이등변삼각형의 성질을 봅니다.</span></a></li>
+        <li><a class="card" href="/m2/parallelogram/"><span class="unit">사각형의 성질</span><span class="t">평행사변형이 되는 조건</span><span class="d">다섯 가지 조건이 언제나 함께 성립하거나 함께 깨지는 것을 확인합니다.</span></a></li>
+        <li><a class="card" href="/m2/midpoint-theorem/"><span class="unit">평행선과 선분의 길이의 비</span><span class="t">삼각형의 중점연결정리</span><span class="d">평행선이 두 변을 같은 비로 나누는 성질과 중점연결정리를 확인합니다.</span></a></li>
+        <li><a class="card" href="/m2/ext-bisector/"><span class="unit">평행선과 선분의 길이의 비 (심화)</span><span class="t">외각의 이등분선 정리</span><span class="d">외각의 이등분선이 대변의 연장선을 두 변의 비로 외분함을 확인합니다.</span></a></li>
+        <li><a class="card" href="/m2/centroid/"><span class="unit">삼각형의 무게중심</span><span class="t">삼각형의 무게중심</span><span class="d">세 중선이 한 점에서 만나고 2 : 1로 나뉘는 모습, 여섯 삼각형의 넓이를 봅니다.</span></a></li>
+        <li><a class="card" href="/m2/pythagoras/"><span class="unit">피타고라스 정리</span><span class="t">피타고라스 정리</span><span class="d">세 변 위 정사각형의 넓이 관계와 유클리드의 증명을 봅니다.</span></a></li>
+      </ul>
+    </section>
+    <section class="grade" id="m3">
+      <h2>중학교 3학년 <small>수학 3 · 삼각비와 원의 성질</small></h2>
+      <ul class="cards">
+        <li><a class="card" href="/m3/trig-ratio/"><span class="unit">삼각비</span><span class="t">삼각비</span><span class="d">크기가 달라도 같은 각이면 변의 비가 같음을 단위원과 함께 확인합니다.</span></a></li>
+        <li><a class="card" href="/m3/inscribed-angle/"><span class="unit">원주각</span><span class="t">원주각 정리</span><span class="d">원주각이 중심각의 절반이며 같은 호 위에서 일정함을 확인합니다.</span></a></li>
+        <li><a class="card" href="/m3/tangent-length/"><span class="unit">원의 접선</span><span class="t">원의 접선의 길이</span><span class="d">원 밖의 한 점에서 그은 두 접선의 길이가 같음을 확인합니다.</span></a></li>
+      </ul>
+    </section>
+    <section class="grade" id="h1">
+      <h2>고등학교 1학년 <small>공통수학</small></h2>
+      <ul class="cards">
+        <li><a class="card" href="/h1/circle-line/"><span class="unit">공통수학 · 도형의 방정식</span><span class="t">원과 직선의 위치 관계</span><span class="d">중심과 직선 사이의 거리, 판별식, 교점의 개수를 함께 비교합니다.</span></a></li>
+        <li><a class="card" href="/h1/quadratic/"><span class="unit">공통수학 · 방정식과 부등식</span><span class="t">이차함수와 이차방정식</span><span class="d">판별식의 부호와 그래프가 x축과 만나는 점의 개수를 연결합니다.</span></a></li>
+      </ul>
+    </section>
+    <section class="grade" id="h2">
+      <h2>고등학교 선택 과목 <small>대수 · 미적분Ⅰ · 확률과 통계 · 기하</small></h2>
+      <ul class="cards">
+        <li><a class="card" href="/h2/sine-cosine-law/"><span class="unit">대수 · 삼각함수</span><span class="t">사인법칙과 코사인법칙</span><span class="d">외접원과 함께 a/sinA = 2R, 코사인법칙을 확인합니다.</span></a></li>
+        <li><a class="card" href="/h2/trig-graph/"><span class="unit">대수 · 삼각함수</span><span class="t">삼각함수의 그래프</span><span class="d">단위원 위의 점의 회전이 그래프로 펼쳐지는 모습을 봅니다.</span></a></li>
+        <li><a class="card" href="/h2/derivative/"><span class="unit">미적분Ⅰ · 미분</span><span class="t">미분계수와 접선의 기울기</span><span class="d">할선이 접선으로 다가가며 평균변화율이 미분계수로 수렴하는 과정을 봅니다.</span></a></li>
+        <li><a class="card" href="/h2/riemann-sum/"><span class="unit">미적분Ⅰ · 적분</span><span class="t">구분구적법과 정적분</span><span class="d">직사각형의 개수를 늘리며 넓이의 근삿값이 정적분에 다가가는 과정을 봅니다.</span></a></li>
+        <li><a class="card" href="/h2/conic/"><span class="unit">기하 · 이차곡선</span><span class="t">이차곡선의 정의</span><span class="d">타원·쌍곡선·포물선을 초점까지의 거리로 정의되는 자취로 확인합니다.</span></a></li>
+        <li><a class="card" href="/h2/binomial-normal/"><span class="unit">확률과 통계 · 통계</span><span class="t">이항분포와 정규분포</span><span class="d">n이 커질수록 이항분포가 정규분포에 가까워지는 모습을 봅니다.</span></a></li>
+      </ul>
+    </section>
+  <footer>모든 도구는 설치 없이 브라우저에서 동작합니다. 교과서 출판사에 따라 단원 배치가 조금 다를 수 있어요.</footer>
 </main>
 </body>
 </html>

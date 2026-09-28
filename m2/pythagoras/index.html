@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>피타고라스 정리 · 중2 · mathtools</title>
+<meta name="description" content="세 변 위 정사각형의 넓이 관계와 유클리드의 증명을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 피타고라스 정리</span></div>
+    <h1>피타고라스 정리</h1>
+    <p class="hint">점 A, B를 끌어 직각삼각형의 크기와 모양을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="피타고라스 정리 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m cb">a</span>² + <span class="m cc">b</span>² = <span class="m ca">c</span>²</div>
+      <p class="statement">직각삼각형에서 직각을 낀 두 변 위의 정사각형 넓이의 합은 빗변 위의 정사각형 넓이와 같습니다. 직각을 풀면 등식이 부등식으로 바뀌어요.</p>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m cb">a</span> = <span class="m">BC</span></span><span class="v cb" id="va"></span>
+      <span class="k"><span class="m cc">b</span> = <span class="m">CA</span></span><span class="v cc" id="vb"></span>
+      <span class="k"><span class="m ca">c</span> = <span class="m">AB</span></span><span class="v ca" id="vc"></span>
+      <span class="sep"></span>
+      <span class="k"><span class="m cb">a</span>² + <span class="m cc">b</span>²</span><span class="v big" id="vSum"></span>
+      <span class="k"><span class="m ca">c</span>²</span><span class="v big ca" id="vC2"></span>
+      <span class="k">∠<span class="m">C</span></span><span class="v" id="vAng"></span>
+    </section>
+    <section class="bars">
+      <div class="barrow"><div class="cap"><span>a² + b²</span><span id="pSum"></span></div><div class="bar"><i class="b" id="ba"></i><i class="c" id="bb"></i></div></div>
+      <div class="barrow"><div class="cap"><span>c²</span><span id="pC"></span></div><div class="bar"><i class="a" id="bc"></i></div></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tRight" checked> <span>∠<span class="m">C</span> = 90°로 고정</span></label>
+      <label><input type="checkbox" id="tEuclid"> <span>유클리드의 증명: 빗변 위 정사각형을 두 직사각형으로 나누기</span></label>
+      <div class="extra" id="euInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="t345">3 · 4 · 5</button>
+      <button id="t51213">5 · 12 · 13</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help">점 <span class="m">C</span>를 끌면 삼각형 전체가 이동하고, <span class="m">A</span>를 끌면 방향과 길이 <span class="m">b</span>가, <span class="m">B</span>를 끌면 길이 <span class="m">a</span>가 바뀝니다.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

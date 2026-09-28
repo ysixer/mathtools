@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이차곡선의 정의 · 고2·3 · mathtools</title>
+<meta name="description" content="타원·쌍곡선·포물선을 초점까지의 거리로 정의되는 자취로 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 기하 · 이차곡선</span></div>
+    <h1>이차곡선의 정의</h1>
+    <p class="hint">곡선 위의 점 P, 초점 F, 꼭짓점을 끌어 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="이차곡선의 정의 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="seg" role="radiogroup" aria-label="곡선 선택">
+        <label><input type="radio" name="kind" value="ellipse" checked><span>타원</span></label>
+        <label><input type="radio" name="kind" value="hyper"><span>쌍곡선</span></label>
+        <label><input type="radio" name="kind" value="parab"><span>포물선</span></label>
+      </div>
+      <div class="formula" style="margin-top:10px" id="def"></div>
+      <p class="statement" id="stmt"></p>
+    </section>
+    <section class="vals">
+      <span class="k">방정식</span><span class="v" id="vEq"></span>
+      <span class="k" id="kC"></span><span class="v" id="vC"></span>
+      <span class="sep"></span>
+      <span class="k" id="k1"></span><span class="v cb" id="v1"></span>
+      <span class="k" id="k2"></span><span class="v cc" id="v2"></span>
+      <span class="k" id="k3"></span><span class="v big ca" id="v3"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="btns">
+      <button id="play" class="primary">▶ P 움직이기</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help" id="help"></p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이차함수와 이차방정식 · 고1 · mathtools</title>
+<meta name="description" content="판별식의 부호와 그래프가 x축과 만나는 점의 개수를 연결합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h1">mathtools</a><span class="chip">고1 · 공통수학 · 방정식과 부등식</span></div>
+    <h1>이차함수와 이차방정식</h1>
+    <p class="hint">슬라이더로 a, b, c를 바꾸거나 꼭짓점을 직접 끌어 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="이차함수와 이차방정식 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula" id="eq"></div>
+      <p class="statement">이차방정식 <span class="m">ax</span>² + <span class="m">bx</span> + <span class="m">c</span> = 0의 실근은 포물선이 <span class="m">x</span>축과 만나는 점의 <span class="m">x</span>좌표입니다. 그래서 판별식 <span class="m">D</span> = <span class="m">b</span>² − 4<span class="m">ac</span>의 부호가 교점의 개수를 알려 줘요.</p>
+    </section>
+    <section>
+      <div class="field"><label for="a"><span class="m">a</span></label><input type="range" id="a" min="-3" max="3" step="0.1" value="1"><output id="a-out"></output></div>
+      <div class="field"><label for="b"><span class="m">b</span></label><input type="range" id="b" min="-8" max="8" step="0.01" value="-2"><output id="b-out"></output></div>
+      <div class="field"><label for="c"><span class="m">c</span></label><input type="range" id="c" min="-8" max="8" step="0.01" value="-3"><output id="c-out"></output></div>
+    </section>
+    <section class="vals">
+      <span class="k">표준형</span><span class="v cq" id="vStd"></span>
+      <span class="k">꼭짓점</span><span class="v cq" id="vV"></span>
+      <span class="k">판별식 <span class="m">D</span> = <span class="m">b</span>² − 4<span class="m">ac</span></span><span class="v big ca" id="vD"></span>
+      <span class="k">실근</span><span class="v ca" id="vRoots"></span>
+      <span class="k"><span class="m">x</span>축과의 교점</span><span class="v" id="vN"></span>
+    </section>
+    <section>
+      <ul class="checks">
+        <li id="c1"><span><span class="m">D</span> &gt; 0 · 서로 다른 두 실근 · 두 점에서 만남</span></li>
+        <li id="c2"><span><span class="m">D</span> = 0 · 중근 · 한 점에서 접함</span></li>
+        <li id="c3"><span><span class="m">D</span> &lt; 0 · 서로 다른 두 허근 · 만나지 않음</span></li>
+      </ul>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="btns">
+      <button id="play" class="primary">▶ 위아래로 움직이기</button>
+      <button id="p2">두 실근</button><button id="p1">중근</button><button id="p0">허근</button>
+    </section>
+    <section>
+      <p class="help">초록 꼭짓점을 끌면 <span class="m">a</span>는 그대로 두고 그래프를 평행이동해요. 꼭짓점이 <span class="m">x</span>축을 지나는 순간 교점의 개수가 바뀝니다.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

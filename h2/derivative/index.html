@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>미분계수와 접선의 기울기 · 고2·3 · mathtools</title>
+<meta name="description" content="할선이 접선으로 다가가며 평균변화율이 미분계수로 수렴하는 과정을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 미적분Ⅰ · 미분</span></div>
+    <h1>미분계수와 접선의 기울기</h1>
+    <p class="hint">점 P, Q를 곡선을 따라 끌거나 "Q를 P로" 버튼을 눌러 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="미분계수와 접선의 기울기 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="seg" role="radiogroup" aria-label="함수 선택">
+        <label><input type="radio" name="fn" value="0" checked><span>x² − 1</span></label>
+        <label><input type="radio" name="fn" value="1"><span>x³ − 3x</span></label>
+        <label><input type="radio" name="fn" value="2"><span>−x² + 2x + 2</span></label>
+      </div>
+      <div class="formula" style="margin-top:10px"><span class="m ca">f′</span>(<span class="m">a</span>) = lim<sub><span class="m">h</span>→0</sub> <span class="cc">{<span class="m">f</span>(<span class="m">a</span>+<span class="m">h</span>) − <span class="m">f</span>(<span class="m">a</span>)} / <span class="m">h</span></span></div>
+      <p class="statement">할선 <span class="m">PQ</span>의 기울기(평균변화율)는 <span class="m">Q</span>가 <span class="m">P</span>에 가까워질수록 접선의 기울기(미분계수)에 다가갑니다.</p>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m">a</span></span><span class="v" id="vA"></span>
+      <span class="k"><span class="m">h</span> = Δ<span class="m">x</span></span><span class="v" id="vH"></span>
+      <span class="k">Δ<span class="m">y</span></span><span class="v" id="vDy"></span>
+      <span class="sep"></span>
+      <span class="k">평균변화율 Δ<span class="m">y</span>/Δ<span class="m">x</span></span><span class="v big cc" id="vAvg"></span>
+      <span class="k">미분계수 <span class="m">f′</span>(<span class="m">a</span>)</span><span class="v big ca" id="vDer"></span>
+      <span class="k">차이</span><span class="v" id="vDiff"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tTan" checked> <span>접선 표시</span></label>
+      <label><input type="checkbox" id="tDer"> <span>도함수 <span class="m">y</span> = <span class="m">f′</span>(<span class="m">x</span>)의 그래프</span></label>
+    </section>
+    <section class="btns">
+      <button id="shrink" class="primary">Q를 P로 (h → 0)</button>
+      <button id="open">h 다시 벌리기</button>
+    </section>
+    <section>
+      <p class="help"><span class="m">P</span>를 끌어 <span class="m">a</span>를 바꾸고, <span class="m">Q</span>를 끌어 <span class="m">h</span>를 바꿔 보세요. 도함수 그래프를 켜면 초록 점의 높이가 접선의 기울기와 같아요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

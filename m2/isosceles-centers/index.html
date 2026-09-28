@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각형의 외심과 내심 · 중2 · mathtools</title>
+<meta name="description" content="수직이등분선·각의 이등분선이 한 점에서 만나는 모습과 이등변삼각형의 성질을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 삼각형의 성질</span></div>
+    <h1>삼각형의 외심과 내심</h1>
+    <p class="hint">꼭짓점을 끌어 예각·직각·둔각삼각형에서 외심의 위치가 어떻게 바뀌는지 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각형의 외심과 내심 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="seg" role="radiogroup" aria-label="보기 선택">
+        <label><input type="radio" name="mode" value="circ" checked><span>외심</span></label>
+        <label><input type="radio" name="mode" value="inc"><span>내심</span></label>
+      </div>
+      <p class="statement" id="stmt"></p>
+    </section>
+    <section class="vals" id="secCirc">
+      <span class="k"><span class="m">OA</span></span><span class="v cb" id="vOA"></span>
+      <span class="k"><span class="m">OB</span></span><span class="v cb" id="vOB"></span>
+      <span class="k"><span class="m">OC</span></span><span class="v cb" id="vOC"></span>
+      <span class="k">외접원의 반지름 <span class="m">R</span></span><span class="v big cb" id="vR"></span>
+    </section>
+    <section class="vals" id="secInc" hidden>
+      <span class="k"><span class="m">I</span>에서 변 <span class="m">BC</span>까지</span><span class="v cc" id="vI1"></span>
+      <span class="k"><span class="m">I</span>에서 변 <span class="m">CA</span>까지</span><span class="v cc" id="vI2"></span>
+      <span class="k"><span class="m">I</span>에서 변 <span class="m">AB</span>까지</span><span class="v cc" id="vI3"></span>
+      <span class="k">내접원의 반지름 <span class="m">r</span></span><span class="v big cc" id="vr"></span>
+      <span class="sep"></span>
+      <span class="k">넓이 <span class="m">S</span></span><span class="v" id="vS"></span>
+      <span class="k">½ <span class="m">r</span>(<span class="m">a</span> + <span class="m">b</span> + <span class="m">c</span>)</span><span class="v" id="vS2"></span>
+    </section>
+    <section class="vals">
+      <span class="k">∠<span class="m">A</span>, ∠<span class="m">B</span>, ∠<span class="m">C</span></span><span class="v" id="vAng"></span>
+      <span class="k"><span class="m">AB</span>, <span class="m">BC</span>, <span class="m">CA</span></span><span class="v" id="vSides"></span>
+    </section>
+    <section>
+      <div class="status" id="status"></div>
+      <div class="status info" id="isoInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="iso">이등변삼각형으로</button>
+      <button id="rt">직각삼각형으로</button>
+      <button id="obt">둔각삼각형으로</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <details>
+        <summary>외심과 내심의 성질 정리</summary>
+        <ul>
+          <li><b>외심</b>: 세 변의 수직이등분선의 교점. 세 꼭짓점까지의 거리가 같아 외접원의 중심이 됩니다. 예각삼각형은 안, 직각삼각형은 빗변의 중점, 둔각삼각형은 밖에 있어요.</li>
+          <li><b>내심</b>: 세 내각의 이등분선의 교점. 세 변까지의 거리가 같아 내접원의 중심이 되고, 항상 삼각형 안에 있습니다. 넓이는 <span class="m">S</span> = ½<span class="m">r</span>(<span class="m">a</span>+<span class="m">b</span>+<span class="m">c</span>).</li>
+          <li><b>이등변삼각형</b>: 두 밑각의 크기가 같고, 꼭지각의 이등분선은 밑변을 수직이등분합니다. 그래서 외심과 내심이 모두 그 선 위에 놓여요.</li>
+        </ul>
+      </details>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

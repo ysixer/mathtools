@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각함수의 그래프 · 고2·3 · mathtools</title>
+<meta name="description" content="단위원 위의 점의 회전이 그래프로 펼쳐지는 모습을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 대수 · 삼각함수</span></div>
+    <h1>삼각함수의 그래프</h1>
+    <p class="hint">원 위의 점 P나 그래프 위의 점을 끌어 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각함수의 그래프 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m">P</span>(cos θ, sin θ)</div>
+      <p class="statement">단위원 위의 점 <span class="m">P</span>가 회전할 때, <span class="m">P</span>의 <span class="m">y</span>좌표를 각 θ에 따라 옆으로 펼치면 사인 그래프, <span class="m">x</span>좌표를 펼치면 코사인 그래프가 됩니다.</p>
+    </section>
+    <section class="vals">
+      <span class="k">θ</span><span class="v big" id="vT"></span>
+      <span class="k">sin θ</span><span class="v cb" id="vS"></span>
+      <span class="k">cos θ</span><span class="v cc" id="vC"></span>
+      <span class="k">tan θ</span><span class="v cq" id="vTan"></span>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tSin" checked> <span class="cb">y = sin x</span></label>
+      <label><input type="checkbox" id="tCos"> <span class="cc">y = cos x</span></label>
+      <label><input type="checkbox" id="tTan"> <span class="cq">y = tan x</span></label>
+      <label><input type="checkbox" id="tTr"> <span class="cp">변환: y = A sin Bx</span></label>
+    </section>
+    <section id="secTr" hidden>
+      <div class="field"><label for="amp"><span class="m">A</span></label><input type="range" id="amp" min="0.5" max="2" step="0.1" value="1.5"><output id="amp-out"></output></div>
+      <div class="field"><label for="frq"><span class="m">B</span></label><input type="range" id="frq" min="0.5" max="4" step="0.5" value="2"><output id="frq-out"></output></div>
+      <p class="extra" id="trInfo" style="margin-left:0"></p>
+    </section>
+    <section>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="btns">
+      <button id="play" class="primary">▶ 회전</button>
+      <button id="d30">π/6</button><button id="d90">π/2</button><button id="d180">π</button><button id="d270">3π/2</button>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

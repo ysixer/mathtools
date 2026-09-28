@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>다각형의 내각의 합 · 중1 · mathtools</title>
+<meta name="description" content="n각형을 삼각형으로 나누어 내각의 합 180°×(n−2)를 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m1">mathtools</a><span class="chip">중1 · 다각형</span></div>
+    <h1>다각형의 내각의 합</h1>
+    <p class="hint">꼭짓점 수를 바꾸고 꼭짓점을 끌어 모양을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="다각형의 내각의 합 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula">(내각의 합) = 180° × (<span class="m">n</span> − 2)</div>
+      <p class="statement"><span class="m">n</span>각형은 한 꼭짓점에서 그은 대각선으로 (<span class="m">n</span> − 2)개의 삼각형으로 나뉘므로, 내각의 합은 180° × (<span class="m">n</span> − 2)입니다. 외각의 합은 <span class="m">n</span>과 관계없이 항상 360°예요.</p>
+    </section>
+    <section>
+      <div class="field"><label for="n">꼭짓점 수 <span class="m">n</span></label><input type="range" id="n" min="3" max="12" step="1" value="5"><output id="n-out"></output></div>
+    </section>
+    <section class="vals">
+      <span class="k">나뉘는 삼각형 수 (<span class="m">n</span> − 2)</span><span class="v" id="vTri"></span>
+      <span class="k">공식 180° × (<span class="m">n</span> − 2)</span><span class="v" id="vFormula"></span>
+      <span class="k">실제로 잰 내각의 합</span><span class="v big ca" id="vSum"></span>
+      <span class="sep"></span>
+      <span class="k">정<span class="m">n</span>각형의 한 내각</span><span class="v" id="vRegular"></span>
+      <span class="k">외각의 합</span><span class="v cq" id="vExt"></span>
+    </section>
+    <section>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tFan" checked> <span>한 꼭짓점에서 대각선 긋기 (삼각형으로 나누기)</span></label>
+      <label><input type="checkbox" id="tAng" checked> <span>각 꼭짓점의 내각 표시</span></label>
+      <label><input type="checkbox" id="tExt"> <span>외각 표시</span></label>
+    </section>
+    <section class="btns">
+      <button id="regular">정다각형으로</button>
+      <button id="rand">무작위로 흔들기</button>
+    </section>
+    <section>
+      <p class="help">꼭짓점을 안쪽으로 밀어 오목다각형을 만들어 보세요. 대각선으로 나누는 방법은 깨지지만, 180°보다 큰 내각까지 더하면 합은 그대로입니다.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

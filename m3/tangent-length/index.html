@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>원의 접선의 길이 · 중3 · mathtools</title>
+<meta name="description" content="원 밖의 한 점에서 그은 두 접선의 길이가 같음을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m3">mathtools</a><span class="chip">중3 · 원의 접선</span></div>
+    <h1>원의 접선의 길이</h1>
+    <p class="hint">점 P를 끌어 원 밖에서 움직여 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="원의 접선의 길이 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m ca">PT₁</span> = <span class="m ca">PT₂</span></div>
+      <p class="statement">원 밖의 한 점 <span class="m">P</span>에서 그 원에 그은 두 접선의 길이는 같습니다. 접선은 접점을 지나는 반지름과 수직이에요.</p>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m">PT₁</span></span><span class="v ca" id="v1"></span>
+      <span class="k"><span class="m">PT₂</span></span><span class="v ca" id="v2"></span>
+      <span class="k">√(<span class="m">OP</span>² − <span class="m">r</span>²)</span><span class="v" id="vPy"></span>
+      <span class="sep"></span>
+      <span class="k"><span class="m">OP</span>, 반지름 <span class="m">r</span></span><span class="v" id="vOP"></span>
+      <span class="k">∠<span class="m">T₁PT₂</span> + ∠<span class="m">T₁OT₂</span></span><span class="v" id="vSum"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tKite" checked> <span>사각형 <span class="m">OT₁PT₂</span> 색칠하기</span></label>
+      <label><input type="checkbox" id="tProof"> <span>증명 보기 (합동인 두 직각삼각형)</span></label>
+      <div class="extra" id="proofInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <details>
+        <summary>왜 성립할까?</summary>
+        <ol>
+          <li>접선은 접점을 지나는 반지름과 수직이므로 ∠<span class="m">OT₁P</span> = ∠<span class="m">OT₂P</span> = 90°.</li>
+          <li>두 직각삼각형 <span class="m">OT₁P</span>, <span class="m">OT₂P</span>는 빗변 <span class="m">OP</span>를 공유하고, <span class="m">OT₁</span> = <span class="m">OT₂</span> (반지름)입니다.</li>
+          <li>RHS 합동이므로 <span class="m">PT₁</span> = <span class="m">PT₂</span>. 피타고라스 정리로 그 길이는 √(<span class="m">OP</span>² − <span class="m">r</span>²)이에요.</li>
+        </ol>
+      </details>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

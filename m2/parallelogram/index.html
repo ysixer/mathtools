@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>평행사변형이 되는 조건 · 중2 · mathtools</title>
+<meta name="description" content="다섯 가지 조건이 언제나 함께 성립하거나 함께 깨지는 것을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 사각형의 성질</span></div>
+    <h1>평행사변형이 되는 조건</h1>
+    <p class="hint">네 꼭짓점을 자유롭게 끌어 조건 목록이 어떻게 바뀌는지 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="평행사변형이 되는 조건 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula">□<span class="m">ABCD</span>가 평행사변형이 되는 조건</div>
+      <p class="statement">아래 다섯 조건 중 하나만 만족해도 평행사변형이 되고, 그러면 나머지도 모두 성립합니다. 점을 움직이며 다섯 개가 항상 함께 켜지고 꺼지는지 확인해 보세요.</p>
+    </section>
+    <section>
+      <ul class="checks">
+        <li id="k1">두 쌍의 대변이 각각 평행하다</li>
+        <li id="k2">두 쌍의 대변의 길이가 각각 같다</li>
+        <li id="k3">두 쌍의 대각의 크기가 각각 같다</li>
+        <li id="k4">두 대각선이 서로를 이등분한다</li>
+        <li id="k5">한 쌍의 대변이 평행하고 그 길이가 같다</li>
+      </ul>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m cb">AB</span>, <span class="m cb">DC</span></span><span class="v" id="vAB"></span>
+      <span class="k"><span class="m cc">AD</span>, <span class="m cc">BC</span></span><span class="v" id="vAD"></span>
+      <span class="k">∠<span class="m ca">A</span>, ∠<span class="m ca">C</span></span><span class="v" id="vAC"></span>
+      <span class="k">∠<span class="m cq">B</span>, ∠<span class="m cq">D</span></span><span class="v" id="vBD"></span>
+      <span class="k">두 대각선 중점 사이 거리</span><span class="v" id="vM"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tKeep"> <span>평행사변형 유지하며 움직이기 (<span class="m">D</span> = <span class="m">A</span> + <span class="m">C</span> − <span class="m">B</span>)</span></label>
+    </section>
+    <section class="btns">
+      <button id="make">평행사변형으로 맞추기</button>
+      <button id="rect">직사각형</button>
+      <button id="rhom">마름모</button>
+      <button id="rand">무작위 사각형</button>
+    </section>
+    <section>
+      <p class="help">같은 색의 변이 서로 마주 보는 대변이고, 대각선의 두 중점(분홍·초록 점)이 겹치면 대각선이 서로를 이등분하는 거예요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>원과 직선의 위치 관계 · 고1 · mathtools</title>
+<meta name="description" content="중심과 직선 사이의 거리, 판별식, 교점의 개수를 함께 비교합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h1">mathtools</a><span class="chip">고1 · 공통수학 · 도형의 방정식</span></div>
+    <h1>원과 직선의 위치 관계</h1>
+    <p class="hint">원의 중심과 직선 위의 두 점을 끌어 보세요. 원 테두리를 끌면 반지름이 바뀝니다.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="원과 직선의 위치 관계 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m cq">d</span> &lt; <span class="m cb">r</span> ⇔ <span class="m ca">D</span> &gt; 0 ⇔ 교점 2개</div>
+      <p class="statement">원과 직선의 위치 관계는 두 가지 방법으로 판단할 수 있습니다. 원의 중심에서 직선까지의 거리 <span class="m">d</span>와 반지름 <span class="m">r</span>을 비교하거나, 두 식을 연립한 이차방정식의 판별식 <span class="m">D</span>의 부호를 보면 돼요. 두 방법의 결론은 항상 같습니다.</p>
+    </section>
+    <section class="vals">
+      <span class="k">원</span><span class="v cb" id="eqC"></span>
+      <span class="k">직선</span><span class="v ca" id="eqL"></span>
+      <span class="sep"></span>
+      <span class="k">중심과 직선 사이 거리 <span class="m">d</span></span><span class="v cq" id="vD"></span>
+      <span class="k">반지름 <span class="m">r</span></span><span class="v cb" id="vR"></span>
+      <span class="k">판별식 <span class="m">D</span>/4</span><span class="v ca" id="vDisc"></span>
+      <span class="k">교점의 개수</span><span class="v big" id="vN"></span>
+    </section>
+    <section>
+      <ul class="checks">
+        <li id="c1"><span><span class="m">d</span> &lt; <span class="m">r</span> · <span class="m">D</span> &gt; 0 · 서로 다른 두 점에서 만남</span></li>
+        <li id="c2"><span><span class="m">d</span> = <span class="m">r</span> · <span class="m">D</span> = 0 · 한 점에서 만남 (접함)</span></li>
+        <li id="c3"><span><span class="m">d</span> &gt; <span class="m">r</span> · <span class="m">D</span> &lt; 0 · 만나지 않음</span></li>
+      </ul>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tSnap" checked> <span>점과 반지름을 0.5 단위로 맞추기</span></label>
+    </section>
+    <section class="btns">
+      <button id="tangent">접하게 만들기</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help">중심 <span class="m">C</span>와 직선 위의 두 점 <span class="m">P</span>, <span class="m">Q</span>를 끌어 보세요. 원 테두리를 끌면 반지름이 바뀝니다.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

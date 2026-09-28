@@ -1,0 +1,7 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/tri-bisector/:path*", "destination": "/m2/ext-bisector/", "permanent": true },
+    { "source": "/inscribed-angle/:path*", "destination": "/m3/inscribed-angle/", "permanent": true }
+  ]
+}

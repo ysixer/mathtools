@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>외각의 이등분선 정리 · 중2 · mathtools</title>
+<meta name="description" content="외각의 이등분선이 대변의 연장선을 두 변의 비로 외분함을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 평행선과 선분의 길이의 비 (심화)</span></div>
+    <h1>외각의 이등분선 정리</h1>
+    <p class="hint">꼭짓점 A, B, C를 끌어 보세요. 빈 곳을 끌면 화면이 이동합니다.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="외각의 이등분선 정리 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m cb">AB</span> : <span class="m cc">AC</span> = <span class="m cb">DB</span> : <span class="m cc">DC</span></div>
+      <p class="statement">∠<span class="m">A</span>의 외각을 이등분한 직선이 변 <span class="m">BC</span>의 연장선과 만나는 점을 <span class="m ca">D</span>라고 하면, <span class="m ca">D</span>에서 두 꼭짓점까지의 거리의 비는 외각을 이루는 두 변의 길이의 비와 같습니다.</p>
+    </section>
+    <section>
+      <div class="cmp">
+        <div class="hd"></div><div class="hd">두 변</div><div class="hd">점 <span class="m">D</span>에서</div>
+        <div class="k">B 쪽</div><div class="cb"><span class="m">AB</span> = <b id="vAB"></b></div><div class="cb"><span class="m">DB</span> = <b id="vDB"></b></div>
+        <div class="k">C 쪽</div><div class="cc"><span class="m">AC</span> = <b id="vAC"></b></div><div class="cc"><span class="m">DC</span> = <b id="vDC"></b></div>
+        <div class="k">비</div><div class="ratio" id="rS"></div><div class="ratio" id="rD"></div>
+      </div>
+    </section>
+    <section class="bars">
+      <div class="barrow"><div class="cap"><span>AB : AC</span><span id="pS"></span></div><div class="bar"><i class="b" id="bS1"></i><i class="c" id="bS2"></i></div></div>
+      <div class="barrow"><div class="cap"><span>DB : DC</span><span id="pD"></span></div><div class="bar"><i class="b" id="bD1"></i><i class="c" id="bD2"></i></div></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="vals">
+      <span class="k">∠<span class="m">A</span> (내각)</span><span class="v" id="aA"></span>
+      <span class="k">∠<span class="m">A</span>의 외각</span><span class="v" id="aE"></span>
+      <span class="k">이등분된 두 각</span><span class="v ca" id="aH"></span>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tInt"> <span>내각의 이등분선과 내분점 <span class="m cq">D′</span>도 표시</span></label>
+      <div class="extra" id="intInfo" hidden></div>
+      <label><input type="checkbox" id="tProof"> <span>증명 보조선 (점 <span class="m">C</span>를 지나 <span class="m">AD</span>에 평행한 직선)</span></label>
+      <div class="extra" id="proofInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="rand">무작위 삼각형</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <details>
+        <summary>왜 성립할까? (보조선을 이용한 증명)</summary>
+        <ol>
+          <li>점 <span class="m">C</span>를 지나고 <span class="m">AD</span>에 평행한 직선이 직선 <span class="m">AB</span>와 만나는 점을 <span class="m cp">F</span>라고 합니다.</li>
+          <li><span class="m">FC</span> ∥ <span class="m">AD</span>이므로 동위각과 엇각이 각각 외각의 절반과 같아져 ∠<span class="m">AFC</span> = ∠<span class="m">ACF</span>. 따라서 <span class="m">AF</span> = <span class="m">AC</span>입니다.</li>
+          <li>점 <span class="m">B</span>에서 뻗은 두 직선을 평행선 <span class="m">FC</span>, <span class="m">AD</span>가 자르므로 <span class="m">AB</span> : <span class="m">AF</span> = <span class="m">DB</span> : <span class="m">DC</span>.</li>
+          <li><span class="m">AF</span> = <span class="m">AC</span>를 대입하면 <span class="m">AB</span> : <span class="m">AC</span> = <span class="m">DB</span> : <span class="m">DC</span>.</li>
+        </ol>
+      </details>
+    </section>
+    <section>
+      <p class="help"><span class="m">AB</span> = <span class="m">AC</span>이면 외각의 이등분선이 <span class="m">BC</span>와 평행해져 점 <span class="m">D</span>가 생기지 않습니다. 두 변을 비슷하게 맞춰 가며 <span class="m">D</span>가 멀리 달아나는 모습을 확인해 보세요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

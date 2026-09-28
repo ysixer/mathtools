@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각형의 중점연결정리 · 중2 · mathtools</title>
+<meta name="description" content="평행선이 두 변을 같은 비로 나누는 성질과 중점연결정리를 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 평행선과 선분의 길이의 비</span></div>
+    <h1>삼각형의 중점연결정리</h1>
+    <p class="hint">변 AB 위의 점 D를 움직이고, 꼭짓점을 끌어 삼각형 모양을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각형의 중점연결정리 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m">DE</span> ∥ <span class="m">BC</span> ⇔ <span class="m cb">AD</span> : <span class="m cc">DB</span> = <span class="m cb">AE</span> : <span class="m cc">EC</span></div>
+      <p class="statement">변 <span class="m">BC</span>에 평행한 직선은 두 변 <span class="m">AB</span>, <span class="m">AC</span>를 같은 비로 나눕니다. 특히 <span class="m">D</span>가 중점이면 <span class="m">E</span>도 중점이고 <span class="m ca">MN</span> = ½<span class="m">BC</span> (중점연결정리)입니다.</p>
+    </section>
+    <section>
+      <div class="cmp">
+        <div class="hd"></div><div class="hd">변 <span class="m">AB</span> 쪽</div><div class="hd">변 <span class="m">AC</span> 쪽</div>
+        <div class="k">위</div><div class="cb"><span class="m">AD</span> = <b id="vAD"></b></div><div class="cb"><span class="m">AE</span> = <b id="vAE"></b></div>
+        <div class="k">아래</div><div class="cc"><span class="m">DB</span> = <b id="vDB"></b></div><div class="cc"><span class="m">EC</span> = <b id="vEC"></b></div>
+        <div class="k">비</div><div class="ratio" id="r1"></div><div class="ratio" id="r2"></div>
+      </div>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m">AD</span> / <span class="m">AB</span></span><span class="v" id="vT"></span>
+      <span class="k"><span class="m ca">DE</span> / <span class="m">BC</span></span><span class="v ca" id="vDE"></span>
+    </section>
+    <section class="bars">
+      <div class="barrow"><div class="cap"><span>AD : DB</span><span id="p1"></span></div><div class="bar"><i class="b" id="b1a"></i><i class="c" id="b1b"></i></div></div>
+      <div class="barrow"><div class="cap"><span>AE : EC</span><span id="p2"></span></div><div class="bar"><i class="b" id="b2a"></i><i class="c" id="b2b"></i></div></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tSnap" checked> <span>점 <span class="m">D</span>를 변의 1/20 단위로 맞추기</span></label>
+    </section>
+    <section class="btns">
+      <button id="half">중점으로</button>
+      <button id="third">1/3 지점으로</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

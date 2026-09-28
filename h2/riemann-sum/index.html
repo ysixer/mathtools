@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>구분구적법과 정적분 · 고2·3 · mathtools</title>
+<meta name="description" content="직사각형의 개수를 늘리며 넓이의 근삿값이 정적분에 다가가는 과정을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 미적분Ⅰ · 적분</span></div>
+    <h1>구분구적법과 정적분</h1>
+    <p class="hint">구간 끝점 a, b를 끌고 n을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="구분구적법과 정적분 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="seg" role="radiogroup" aria-label="함수 선택">
+        <label><input type="radio" name="fn" value="0" checked><span>x²</span></label>
+        <label><input type="radio" name="fn" value="1"><span>x³/4 − x + 1</span></label>
+        <label><input type="radio" name="fn" value="2"><span>x² − 2</span></label>
+      </div>
+      <div class="formula" style="margin-top:10px">∫<sub><span class="m">a</span></sub><sup><span class="m">b</span></sup> <span class="m">f</span>(<span class="m">x</span>)<span class="m">dx</span> = lim<sub><span class="m">n</span>→∞</sub> Σ <span class="m">f</span>(<span class="m">x<sub>k</sub></span>)Δ<span class="m">x</span></div>
+      <p class="statement">구간을 <span class="m">n</span>개로 나눈 직사각형 넓이의 합은 <span class="m">n</span>이 커질수록 정적분의 값에 가까워집니다. <span class="m">x</span>축 아래 부분은 음수로 더해져요.</p>
+    </section>
+    <section>
+      <div class="field"><label for="n"><span class="m">n</span></label><input type="range" id="n" min="1" max="200" step="1" value="6"><output id="n-out"></output></div>
+      <div class="seg" role="radiogroup" aria-label="높이를 정하는 점">
+        <label><input type="radio" name="rule" value="left" checked><span>왼쪽 끝</span></label>
+        <label><input type="radio" name="rule" value="right"><span>오른쪽 끝</span></label>
+        <label><input type="radio" name="rule" value="mid"><span>가운데</span></label>
+      </div>
+    </section>
+    <section class="vals">
+      <span class="k">구간 [<span class="m">a</span>, <span class="m">b</span>]</span><span class="v" id="vAB"></span>
+      <span class="k">직사각형 넓이의 합 <span class="m">S<sub>n</sub></span></span><span class="v big cb" id="vSn"></span>
+      <span class="k">정적분의 값</span><span class="v big cq" id="vI"></span>
+      <span class="k">오차 |<span class="m">S<sub>n</sub></span> − ∫|</span><span class="v ca" id="vErr"></span>
+      <span class="k"><span class="m">n</span>을 두 배로 늘리면 오차는</span><span class="v" id="vRatio"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tArea" checked> <span>정적분이 나타내는 영역 표시</span></label>
+    </section>
+    <section class="btns">
+      <button id="play" class="primary">▶ n 키우기</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help"><span class="m">x</span>축 위의 점 <span class="m">a</span>, <span class="m">b</span>를 끌어 구간을 바꿔 보세요. 왼쪽·오른쪽 끝 방식은 오차가 1/<span class="m">n</span>에, 가운데 방식은 1/<span class="m">n</span>²에 비례해 줄어듭니다.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

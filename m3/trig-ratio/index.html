@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각비 · 중3 · mathtools</title>
+<meta name="description" content="크기가 달라도 같은 각이면 변의 비가 같음을 단위원과 함께 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m3">mathtools</a><span class="chip">중3 · 삼각비</span></div>
+    <h1>삼각비</h1>
+    <p class="hint">점 B를 끌어 각과 크기를 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각비 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula">sin <span class="m">A</span> = <span class="m cb">BC</span>/<span class="m ca">AB</span>, cos <span class="m">A</span> = <span class="m cc">AC</span>/<span class="m ca">AB</span>, tan <span class="m">A</span> = <span class="m cb">BC</span>/<span class="m cc">AC</span></div>
+      <p class="statement">∠<span class="m">A</span>가 같은 직각삼각형은 모두 닮음이므로, 삼각형의 크기와 관계없이 변의 비가 일정합니다. 이 비를 삼각비라고 해요.</p>
+    </section>
+    <section class="vals">
+      <span class="k">∠<span class="m">A</span></span><span class="v big" id="vA"></span>
+      <span class="k"><span class="m ca">AB</span> (빗변)</span><span class="v ca" id="vAB"></span>
+      <span class="k"><span class="m cb">BC</span> (높이)</span><span class="v cb" id="vBC"></span>
+      <span class="k"><span class="m cc">AC</span> (밑변)</span><span class="v cc" id="vAC"></span>
+      <span class="sep"></span>
+      <span class="k">sin <span class="m">A</span></span><span class="v cb" id="vSin"></span>
+      <span class="k">cos <span class="m">A</span></span><span class="v cc" id="vCos"></span>
+      <span class="k">tan <span class="m">A</span></span><span class="v cq" id="vTan"></span>
+      <span class="k">sin²<span class="m">A</span> + cos²<span class="m">A</span></span><span class="v" id="vId"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tUnit" checked> <span>반지름이 1인 원에서 보기 (sin, cos, tan를 선분으로)</span></label>
+      <label><input type="checkbox" id="tSnap"> <span>점 <span class="m">B</span>를 0.1 단위로 맞추기</span></label>
+    </section>
+    <section class="btns">
+      <button id="d30">30°</button><button id="d45">45°</button><button id="d60">60°</button>
+      <button id="twice">크기만 2배</button><button id="half">크기만 ½배</button>
+    </section>
+    <section>
+      <details>
+        <summary>특수각의 삼각비</summary>
+        <ul>
+          <li>30°: sin = 1/2, cos = √3/2, tan = √3/3</li>
+          <li>45°: sin = √2/2, cos = √2/2, tan = 1</li>
+          <li>60°: sin = √3/2, cos = 1/2, tan = √3</li>
+        </ul>
+      </details>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

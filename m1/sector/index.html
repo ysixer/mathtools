@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>부채꼴의 호와 넓이 · 중1 · mathtools</title>
+<meta name="description" content="호의 길이와 넓이가 중심각에 정비례함을 막대로 비교합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m1">mathtools</a><span class="chip">중1 · 원과 부채꼴</span></div>
+    <h1>부채꼴의 호와 넓이</h1>
+    <p class="hint">점 A, B를 원을 따라 움직이고, 원 테두리를 끌어 반지름을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="부채꼴의 호와 넓이 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m cb">l</span> = 2π<span class="m">r</span> × <span class="m ca">x</span>/360, <span class="m cq">S</span> = π<span class="m">r</span>² × <span class="m ca">x</span>/360</div>
+      <p class="statement">한 원에서 부채꼴의 호의 길이와 넓이는 중심각의 크기에 정비례합니다. 그래서 세 막대가 늘 같은 비율로 움직여요.</p>
+    </section>
+    <section class="vals">
+      <span class="k">중심각 <span class="m">x</span></span><span class="v big ca" id="vX"></span>
+      <span class="k">반지름 <span class="m">r</span></span><span class="v" id="vR"></span>
+      <span class="k">호의 길이 <span class="m">l</span></span><span class="v cb" id="vL"></span>
+      <span class="k">넓이 <span class="m">S</span></span><span class="v cq" id="vS"></span>
+      <span class="sep"></span>
+      <span class="k">½ <span class="m">r l</span> (넓이의 다른 표현)</span><span class="v" id="vHalf"></span>
+    </section>
+    <section class="bars">
+      <div class="barrow"><div class="cap"><span>중심각 ÷ 360°</span><span id="p1"></span></div><div class="bar"><i class="a" id="b1"></i></div></div>
+      <div class="barrow"><div class="cap"><span>호의 길이 ÷ 원의 둘레</span><span id="p2"></span></div><div class="bar"><i class="b" id="b2"></i></div></div>
+      <div class="barrow"><div class="cap"><span>부채꼴 넓이 ÷ 원의 넓이</span><span id="p3"></span></div><div class="bar"><i class="q" id="b3"></i></div></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tSnap" checked> <span>중심각 5°, 반지름 0.1 단위로 맞추기</span></label>
+    </section>
+    <section class="btns">
+      <button id="a60">60°</button><button id="a90">90°</button><button id="a180">180°</button><button id="a270">270°</button>
+    </section>
+    <section>
+      <p class="help">점 <span class="m">A</span>, <span class="m">B</span>를 원을 따라 움직여 중심각을 바꾸고, 원 테두리를 끌어 반지름을 바꿔 보세요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

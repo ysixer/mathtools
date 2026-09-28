@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이항분포와 정규분포 · 고2·3 · mathtools</title>
+<meta name="description" content="n이 커질수록 이항분포가 정규분포에 가까워지는 모습을 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 확률과 통계 · 통계</span></div>
+    <h1>이항분포와 정규분포</h1>
+    <p class="hint">n과 p를 바꾸거나 "n 키우기"를 눌러 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="이항분포와 정규분포 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m">X</span> ~ B(<span class="m">n</span>, <span class="m">p</span>) ≈ N(<span class="m">np</span>, <span class="m">npq</span>)</div>
+      <p class="statement">시행 횟수 <span class="m">n</span>이 충분히 크면 이항분포 B(<span class="m">n</span>, <span class="m">p</span>)는 평균 <span class="m">np</span>, 분산 <span class="m">npq</span>인 정규분포에 가까워집니다 (<span class="m">q</span> = 1 − <span class="m">p</span>).</p>
+    </section>
+    <section>
+      <div class="field"><label for="n"><span class="m">n</span></label><input type="range" id="n" min="1" max="100" step="1" value="10"><output id="n-out"></output></div>
+      <div class="field"><label for="p"><span class="m">p</span></label><input type="range" id="p" min="0.01" max="0.99" step="0.01" value="0.3"><output id="p-out"></output></div>
+    </section>
+    <section class="vals">
+      <span class="k">평균 <span class="m">E</span>(<span class="m">X</span>) = <span class="m">np</span></span><span class="v" id="vM"></span>
+      <span class="k">분산 <span class="m">V</span>(<span class="m">X</span>) = <span class="m">npq</span></span><span class="v" id="vV"></span>
+      <span class="k">표준편차 σ</span><span class="v" id="vS"></span>
+      <span class="k"><span class="m">np</span>, <span class="m">nq</span></span><span class="v" id="vNp"></span>
+      <span class="k">막대와 곡선의 최대 차이</span><span class="v ca" id="vDiff"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tNorm" checked> <span>정규분포 곡선 겹쳐 보기</span></label>
+      <label><input type="checkbox" id="tSig" checked> <span>평균과 ±σ 표시</span></label>
+    </section>
+    <section class="btns">
+      <button id="play" class="primary">▶ n 키우기</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help"><span class="m">p</span>가 0이나 1에 가까우면 분포가 한쪽으로 치우쳐서, 정규분포에 가까워지려면 <span class="m">n</span>이 더 커야 합니다. 흔히 <span class="m">np</span> ≥ 5, <span class="m">nq</span> ≥ 5를 기준으로 삼아요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

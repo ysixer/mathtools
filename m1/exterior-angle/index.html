@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각형의 외각 · 중1 · mathtools</title>
+<meta name="description" content="외각의 크기가 이웃하지 않는 두 내각의 합과 같음을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m1">mathtools</a><span class="chip">중1 · 삼각형의 성질</span></div>
+    <h1>삼각형의 외각</h1>
+    <p class="hint">꼭짓점 A, B, C를 끌어 보세요. 외각과 두 내각의 합이 늘 같이 움직입니다.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각형의 외각 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula">∠<span class="m ca">ACD</span> = ∠<span class="m cb">A</span> + ∠<span class="m cc">B</span></div>
+      <p class="statement">삼각형의 한 외각의 크기는 그와 이웃하지 않는 두 내각의 크기의 합과 같습니다.</p>
+    </section>
+    <section class="vals">
+      <span class="k">∠<span class="m">A</span></span><span class="v cb" id="vA"></span>
+      <span class="k">∠<span class="m">B</span></span><span class="v cc" id="vB"></span>
+      <span class="k">∠<span class="m">A</span> + ∠<span class="m">B</span></span><span class="v" id="vAB"></span>
+      <span class="k">외각 ∠<span class="m">ACD</span></span><span class="v big ca" id="vExt"></span>
+      <span class="sep"></span>
+      <span class="k">∠<span class="m">C</span> (내각)</span><span class="v" id="vC"></span>
+      <span class="k">세 내각의 합</span><span class="v" id="vSum"></span>
+    </section>
+    <section class="bars">
+      <div class="barrow">
+        <div class="cap"><span>∠A + ∠B</span><span id="bABt"></span></div>
+        <div class="bar"><i class="b" id="bA"></i><i class="c" id="bB"></i></div>
+      </div>
+      <div class="barrow">
+        <div class="cap"><span>외각 ∠ACD</span><span id="bEt"></span></div>
+        <div class="bar"><i class="a" id="bE"></i></div>
+      </div>
+      <div class="scale"><span>0°</span><span>180°</span></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tPar"> <span>보조선: 점 <span class="m">C</span>를 지나고 <span class="m">AB</span>에 평행한 직선 <span class="m">CE</span></span></label>
+      <div class="extra" id="parInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="rand">무작위 삼각형</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <details>
+        <summary>왜 성립할까?</summary>
+        <ol>
+          <li>점 <span class="m">C</span>를 지나고 <span class="m">AB</span>에 평행한 직선 <span class="m">CE</span>를 긋습니다.</li>
+          <li><span class="m">AB</span> ∥ <span class="m">CE</span>이므로 ∠<span class="m">ACE</span> = ∠<span class="m">A</span> (엇각), ∠<span class="m">ECD</span> = ∠<span class="m">B</span> (동위각).</li>
+          <li>따라서 ∠<span class="m">ACD</span> = ∠<span class="m">ACE</span> + ∠<span class="m">ECD</span> = ∠<span class="m">A</span> + ∠<span class="m">B</span>. 이 식은 세 내각의 합이 180°라는 사실과도 같은 이야기입니다.</li>
+        </ol>
+      </details>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>삼각형의 무게중심 · 중2 · mathtools</title>
+<meta name="description" content="세 중선이 한 점에서 만나고 2 : 1로 나뉘는 모습, 여섯 삼각형의 넓이를 봅니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m2">mathtools</a><span class="chip">중2 · 삼각형의 무게중심</span></div>
+    <h1>삼각형의 무게중심</h1>
+    <p class="hint">꼭짓점을 끌어 모양을 바꿔도 비율과 넓이가 유지되는지 확인해 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각형의 무게중심 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula"><span class="m ca">AG</span> : <span class="m cq">GD</span> = 2 : 1</div>
+      <p class="statement">삼각형의 세 중선은 한 점 <span class="m">G</span>(무게중심)에서 만나고, <span class="m">G</span>는 각 중선을 꼭짓점으로부터 2 : 1로 나눕니다. 세 중선이 만드는 여섯 삼각형의 넓이는 모두 같아요.</p>
+    </section>
+    <section class="vals">
+      <span class="k"><span class="m ca">AG</span> : <span class="m cq">GD</span></span><span class="v" id="r1"></span>
+      <span class="k"><span class="m ca">BG</span> : <span class="m cq">GE</span></span><span class="v" id="r2"></span>
+      <span class="k"><span class="m ca">CG</span> : <span class="m cq">GF</span></span><span class="v" id="r3"></span>
+      <span class="sep"></span>
+      <span class="k">△<span class="m">ABC</span>의 넓이 <span class="m">S</span></span><span class="v" id="vS"></span>
+      <span class="k">여섯 삼각형의 넓이</span><span class="v" id="v6"></span>
+      <span class="k"><span class="m">S</span> ÷ 6</span><span class="v" id="vS6"></span>
+      <span class="sep"></span>
+      <span class="k">무게중심 좌표</span><span class="v" id="vG"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tSix" checked> <span>여섯 삼각형 색칠하기</span></label>
+      <label><input type="checkbox" id="tAxes"> <span>좌표축 보기 (꼭짓점 좌표의 평균 = 무게중심)</span></label>
+    </section>
+    <section class="btns">
+      <button id="rand">무작위 삼각형</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <p class="help">두꺼운 종이로 이 삼각형을 오려 점 <span class="m">G</span>를 연필 끝에 올리면 균형을 잡습니다. 그래서 "무게"중심이에요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

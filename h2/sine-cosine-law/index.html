@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>사인법칙과 코사인법칙 · 고2·3 · mathtools</title>
+<meta name="description" content="외접원과 함께 a/sinA = 2R, 코사인법칙을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#h2">mathtools</a><span class="chip">고2·3 · 대수 · 삼각함수</span></div>
+    <h1>사인법칙과 코사인법칙</h1>
+    <p class="hint">꼭짓점을 끌고, 위쪽 버튼으로 사인법칙과 코사인법칙을 바꿔 보세요.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="사인법칙과 코사인법칙 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="seg" role="radiogroup" aria-label="법칙 선택">
+        <label><input type="radio" name="mode" value="sine" checked><span>사인법칙</span></label>
+        <label><input type="radio" name="mode" value="cos"><span>코사인법칙</span></label>
+      </div>
+      <div class="formula" id="law" style="margin-top:10px"></div>
+      <p class="statement" id="stmt"></p>
+    </section>
+    <section class="vals" id="secSine">
+      <span class="k"><span class="m">a</span> / sin <span class="m">A</span></span><span class="v" id="s1"></span>
+      <span class="k"><span class="m">b</span> / sin <span class="m">B</span></span><span class="v" id="s2"></span>
+      <span class="k"><span class="m">c</span> / sin <span class="m">C</span></span><span class="v" id="s3"></span>
+      <span class="k">외접원의 지름 2<span class="m">R</span></span><span class="v big cb" id="s4"></span>
+    </section>
+    <section class="vals" id="secCos" hidden>
+      <span class="k"><span class="m">a</span>²</span><span class="v big" id="c1"></span>
+      <span class="k"><span class="m">b</span>² + <span class="m">c</span>² − 2<span class="m">bc</span> cos <span class="m">A</span></span><span class="v big ca" id="c2"></span>
+      <span class="sep"></span>
+      <span class="k">cos <span class="m">A</span> = (<span class="m">b</span>² + <span class="m">c</span>² − <span class="m">a</span>²) / 2<span class="m">bc</span></span><span class="v" id="c3"></span>
+      <span class="k"><span class="m">AH</span> = <span class="m">b</span> cos <span class="m">A</span></span><span class="v cc" id="c4"></span>
+      <span class="k"><span class="m">CH</span> = <span class="m">b</span> sin <span class="m">A</span></span><span class="v cq" id="c5"></span>
+    </section>
+    <section class="vals">
+      <span class="k">∠<span class="m">A</span>, ∠<span class="m">B</span>, ∠<span class="m">C</span></span><span class="v" id="vAng"></span>
+      <span class="k"><span class="m">a</span>, <span class="m">b</span>, <span class="m">c</span></span><span class="v" id="vSide"></span>
+    </section>
+    <section><div class="status" id="status"></div></section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tProof"> <span>증명 보조선 표시</span></label>
+      <div class="extra" id="proofInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="obt">∠A를 둔각으로</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

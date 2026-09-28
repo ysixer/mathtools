@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>원주각 정리 · 중3 · mathtools</title>
+<meta name="description" content="원주각이 중심각의 절반이며 같은 호 위에서 일정함을 확인합니다.">
+<link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap">
+<link rel="stylesheet" href="/shared/theme.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="crumbs"><a class="home" href="/#m3">mathtools</a><span class="chip">중3 · 원주각</span></div>
+    <h1>원주각 정리</h1>
+    <p class="hint">원 위의 점 A, B, P를 끌어 보세요. 원 테두리를 끌면 크기가 바뀝니다.</p>
+    <nav class="pager" id="pager" aria-label="다른 도구"></nav>
+  </header>
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="원주각 정리 그림"></svg>
+    <div class="zoom"><button data-zoom="in" aria-label="확대">＋</button><button data-zoom="out" aria-label="축소">－</button><button data-zoom="fit">전체 보기</button></div>
+  </div>
+  <aside class="panel">
+    <section>
+      <div class="formula">∠<span class="m ca">APB</span> = ½ ∠<span class="m cb">AOB</span></div>
+      <p class="statement">한 호에 대한 원주각의 크기는 그 호에 대한 중심각 크기의 절반입니다. 그래서 점 <span class="m">P</span>가 같은 호 위에서 어디로 움직이든 원주각은 변하지 않습니다.</p>
+    </section>
+    <section class="vals">
+      <span class="k">원주각 ∠<span class="m">APB</span></span><span class="v big ca" id="vP"></span>
+      <span class="k">중심각 ∠<span class="m">AOB</span> (파란 호)</span><span class="v big cb" id="vO"></span>
+      <span class="k">중심각 ÷ 원주각</span><span class="v" id="vR"></span>
+      <span class="k">파란 호의 길이</span><span class="v" id="vL"></span>
+    </section>
+    <section class="bars">
+      <div class="barrow"><div class="cap"><span>원주각</span><span id="bPt"></span></div><div class="bar"><i class="a" id="bP"></i></div></div>
+      <div class="barrow"><div class="cap"><span>중심각</span><span id="bOt"></span></div><div class="bar"><i class="b" id="bO"></i></div></div>
+      <div class="scale"><span>0°</span><span>180°</span><span>360°</span></div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="toggles">
+      <label><input type="checkbox" id="tQ" checked> <span>두 번째 원주각 <span class="m cq">Q</span> 표시</span></label>
+      <div class="extra" id="qInfo"></div>
+      <label><input type="checkbox" id="tProof"> <span>증명 보조선 (지름 <span class="m">PP′</span>)</span></label>
+      <div class="extra" id="proofInfo" hidden></div>
+    </section>
+    <section class="btns">
+      <button id="play" class="primary">▶ P 움직이기</button>
+      <button id="thales">AB를 지름으로</button>
+      <button id="rand">무작위</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+    <section>
+      <details>
+        <summary>왜 성립할까? (지름을 이용한 증명)</summary>
+        <ol>
+          <li><span class="m">P</span>를 지나는 지름 <span class="m">PP′</span>를 긋습니다. <span class="m">OA</span> = <span class="m">OP</span>(반지름)이므로 △<span class="m">OAP</span>는 이등변삼각형이고 ∠<span class="m">OAP</span> = ∠<span class="m">OPA</span>입니다.</li>
+          <li>∠<span class="m">AOP′</span>는 △<span class="m">OAP</span>의 외각이므로 ∠<span class="m">AOP′</span> = 2∠<span class="m">OPA</span>. 같은 방법으로 ∠<span class="m">BOP′</span> = 2∠<span class="m">OPB</span>.</li>
+          <li><span class="m">O</span>가 ∠<span class="m">APB</span>의 안쪽에 있으면 두 식을 더하고, 바깥쪽에 있으면 빼서 ∠<span class="m">AOB</span> = 2∠<span class="m">APB</span>를 얻습니다. <span class="m">O</span>가 변 위에 있으면 식 하나로 끝납니다.</li>
+        </ol>
+      </details>
+    </section>
+    <section>
+      <p class="help"><span class="m">P</span>를 반대쪽 호로 넘기면 원주각이 가리키는 호가 바뀌어 각이 180° − θ가 됩니다. <span class="m">Q</span>를 <span class="m">P</span>의 반대쪽에 두면 원에 내접하는 사각형 <span class="m">APBQ</span>의 대각의 합이 180°인 것도 확인할 수 있어요.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
