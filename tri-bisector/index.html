@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>외각의 이등분선 정리 탐구</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9edf1; --paper:#f7f9fb; --ink:#18212c; --muted:#5d6978; --rule:#cfd6de; --grid:#dfe5eb; --grid2:#d2dae2;
+  --b:#2352c4; --c:#b77a06; --acc:#b3246f; --int:#14876b; --proof:#6b4fc2;
+  --b-soft:rgba(35,82,196,.14); --c-soft:rgba(183,122,6,.16); --acc-soft:rgba(179,36,111,.12);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --grid:#1d252e; --grid2:#243039;
+    --b:#6f9bff; --c:#f0b544; --acc:#ff6fb0; --int:#43d1a7; --proof:#a893ff;
+    --b-soft:rgba(111,155,255,.18); --c-soft:rgba(240,181,68,.18); --acc-soft:rgba(255,111,176,.14);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161c; --paper:#171e26; --ink:#e6ebf0; --muted:#94a0ae; --rule:#2b3541; --grid:#1d252e; --grid2:#243039;
+  --b:#6f9bff; --c:#f0b544; --acc:#ff6fb0; --int:#43d1a7; --proof:#a893ff;
+  --b-soft:rgba(111,155,255,.18); --c-soft:rgba(240,181,68,.18); --acc-soft:rgba(255,111,176,.14);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%; scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0; height:100%; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+.m{font-family:"Noto Serif", "Times New Roman", Georgia, serif; font-style:italic; font-weight:500; letter-spacing:.01em}
+.app{display:grid; grid-template-columns:minmax(0,1fr) 370px; grid-template-rows:auto minmax(0,1fr);
+  height:100%; gap:14px; padding:14px}
+header{grid-column:1/-1; display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:2px 4px}
+h1{margin:0; font-size:21px; font-weight:700; letter-spacing:-.01em}
+header p{margin:0; color:var(--muted); font-size:14px}
+
+.stage{position:relative; background:var(--paper); border:1px solid var(--rule); border-radius:14px; overflow:hidden; min-height:0}
+#cv{display:block; width:100%; height:100%; touch-action:none; user-select:none; -webkit-user-select:none; cursor:move}
+#cv.dragging{cursor:grabbing}
+.tools{position:absolute; right:10px; bottom:10px; display:flex; gap:6px}
+.tools button, .btns button{font:inherit; font-size:14px; border:1px solid var(--rule); background:var(--paper); color:var(--ink);
+  border-radius:8px; padding:6px 11px; cursor:pointer; min-height:34px}
+.tools button:hover, .btns button:hover{border-color:var(--muted)}
+button:focus-visible, input:focus-visible, summary:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+.offhint{position:absolute; left:10px; bottom:10px; font-size:13px; color:var(--acc); background:var(--paper);
+  border:1px solid var(--acc-soft); border-radius:8px; padding:6px 10px; display:none; cursor:pointer}
+.offhint.show{display:block}
+
+svg .grid{stroke:var(--grid); stroke-width:1; fill:none}
+svg .axisline{stroke:var(--grid2); stroke-width:1; fill:none}
+svg .faint{stroke:var(--rule); stroke-width:1.2; stroke-dasharray:5 6; fill:none}
+svg .bc{stroke:var(--ink); stroke-width:2; fill:none}
+svg .ext{stroke:var(--ink); stroke-width:1.6; stroke-dasharray:7 6; fill:none; opacity:.55}
+svg .ab{stroke:var(--b); stroke-width:3; fill:none; stroke-linecap:round}
+svg .ac{stroke:var(--c); stroke-width:3; fill:none; stroke-linecap:round}
+svg .extA{stroke:var(--muted); stroke-width:1.6; stroke-dasharray:4 5; fill:none}
+svg .bis{stroke:var(--acc); stroke-width:2.4; fill:none}
+svg .bisfar{stroke:var(--acc); stroke-width:1.2; fill:none; opacity:.35}
+svg .wedge{fill:var(--acc-soft); stroke:none}
+svg .arc{stroke:var(--acc); stroke-width:2; fill:none}
+svg .bar-b{stroke:var(--b); stroke-width:4; stroke-linecap:butt}
+svg .bar-c{stroke:var(--c); stroke-width:4; stroke-linecap:butt}
+svg .cap-b{stroke:var(--b); stroke-width:2}
+svg .cap-c{stroke:var(--c); stroke-width:2}
+svg .int{stroke:var(--int); stroke-width:2; stroke-dasharray:6 4; fill:none}
+svg .proof{stroke:var(--proof); stroke-width:2; stroke-dasharray:3 4; fill:none}
+svg .proofmark{stroke:var(--proof); stroke-width:2}
+svg .vtx{fill:var(--paper); stroke:var(--ink); stroke-width:2.5}
+svg .hit{fill:transparent; cursor:grab}
+svg .hit:hover + .vtx, svg .vtx.active{stroke-width:3.5; fill:var(--bg)}
+svg .dpt{fill:var(--acc); stroke:var(--paper); stroke-width:2}
+svg .ipt{fill:var(--int); stroke:var(--paper); stroke-width:2}
+svg .fpt{fill:var(--proof); stroke:var(--paper); stroke-width:2}
+svg text{paint-order:stroke; stroke:var(--paper); stroke-width:4px; stroke-linejoin:round}
+svg .lbl{font-family:"Noto Serif", Georgia, serif; font-style:italic; font-weight:700; font-size:19px; fill:var(--ink)}
+svg .lbl-d{fill:var(--acc)} svg .lbl-i{fill:var(--int)} svg .lbl-f{fill:var(--proof)}
+svg .len{font-size:12.5px; font-weight:500; font-variant-numeric:tabular-nums}
+svg .len-b{fill:var(--b)} svg .len-c{fill:var(--c)} svg .len-a{fill:var(--acc)}
+
+.panel{overflow:auto; background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:18px 18px 22px; min-height:0}
+.panel section{padding:14px 0; border-top:1px solid var(--rule)}
+.panel section:first-child{border-top:0; padding-top:0}
+.statement{font-size:14px; color:var(--muted); margin:6px 0 0}
+.formula{font-size:22px; display:flex; flex-wrap:wrap; align-items:baseline; gap:.35em}
+.cb{color:var(--b)} .cc{color:var(--c)} .ca{color:var(--acc)} .ci{color:var(--int)} .cp{color:var(--proof)}
+.cmp{display:grid; grid-template-columns:auto 1fr 1fr; gap:6px 14px; align-items:baseline; font-variant-numeric:tabular-nums}
+.cmp .hd{font-size:12.5px; color:var(--muted)}
+.cmp .v{font-size:15px}
+.cmp .v b{font-weight:500}
+.cmp .k{font-size:12.5px; color:var(--muted)}
+.cmp .ratio{font-size:18px; font-weight:700}
+.bars{display:grid; gap:10px}
+.barrow .cap{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin-bottom:4px; font-variant-numeric:tabular-nums}
+.bar{display:flex; height:16px; border-radius:4px; overflow:hidden; background:var(--grid)}
+.bar i{display:block; height:100%; transition:width .08s linear}
+.bar i:first-child{background:var(--b)} .bar i:last-child{background:var(--c)}
+@media (prefers-reduced-motion: reduce){ .bar i{transition:none} }
+.status{margin-top:12px; font-size:14px; padding:8px 10px; border-radius:8px; background:var(--grid)}
+.status.ok{color:var(--int)}
+.status.warn{color:var(--acc)}
+.angles{display:grid; grid-template-columns:1fr auto; gap:4px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.angles span:nth-child(odd){color:var(--muted)}
+.toggles label{display:flex; gap:10px; align-items:flex-start; font-size:14px; padding:5px 0; cursor:pointer}
+.toggles input{margin-top:4px; accent-color:var(--acc); width:16px; height:16px}
+.extra{font-size:13.5px; color:var(--muted); margin:6px 0 0 26px; font-variant-numeric:tabular-nums}
+.btns{display:flex; gap:8px; flex-wrap:wrap}
+details{font-size:14px}
+summary{cursor:pointer; font-weight:500}
+details ol{padding-left:20px; margin:10px 0 0}
+details li{margin-bottom:6px}
+.help{font-size:13px; color:var(--muted); margin:0}
+
+@media (max-width:880px){
+  body{height:auto}
+  .app{grid-template-columns:1fr; grid-template-rows:auto 62vh auto; height:auto}
+  .panel{overflow:visible}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>외각의 이등분선 정리</h1>
+    <p>꼭짓점 <span class="m">A</span>, <span class="m">B</span>, <span class="m">C</span>를 끌어서 옮겨 보세요. 빈 곳을 끌면 화면이 이동하고, 휠로 확대·축소됩니다.</p>
+  </header>
+
+  <div class="stage">
+    <svg id="cv" role="img" aria-label="삼각형 ABC와 꼭짓점 A의 외각 이등분선"></svg>
+    <div class="offhint" id="offhint" role="button" tabindex="0">점 D가 화면 밖에 있어요. 눌러서 전체 보기</div>
+    <div class="tools">
+      <button id="zin" aria-label="확대">＋</button>
+      <button id="zout" aria-label="축소">－</button>
+      <button id="fitb">전체 보기</button>
+    </div>
+  </div>
+
+  <aside class="panel">
+    <section>
+      <div class="formula">
+        <span class="m cb">AB</span> : <span class="m cc">AC</span> = <span class="m cb">DB</span> : <span class="m cc">DC</span>
+      </div>
+      <p class="statement">∠<span class="m">A</span>의 외각을 이등분한 직선이 변 <span class="m">BC</span>의 연장선과 만나는 점을 <span class="m ca">D</span>라고 하면, <span class="m ca">D</span>에서 두 꼭짓점까지의 거리의 비는 외각을 이루는 두 변의 길이의 비와 같습니다.</p>
+    </section>
+
+    <section>
+      <div class="cmp">
+        <div class="hd"></div><div class="hd">두 변</div><div class="hd">점 D에서</div>
+        <div class="k">B 쪽</div><div class="v cb"><span class="m">AB</span> = <b id="vAB"></b></div><div class="v cb"><span class="m">DB</span> = <b id="vDB"></b></div>
+        <div class="k">C 쪽</div><div class="v cc"><span class="m">AC</span> = <b id="vAC"></b></div><div class="v cc"><span class="m">DC</span> = <b id="vDC"></b></div>
+        <div class="k">비</div><div class="ratio" id="rS"></div><div class="ratio" id="rD"></div>
+      </div>
+    </section>
+
+    <section class="bars" aria-label="비율 막대">
+      <div class="barrow">
+        <div class="cap"><span><span class="m">AB</span> : <span class="m">AC</span></span><span id="pS"></span></div>
+        <div class="bar"><i id="bS1"></i><i id="bS2"></i></div>
+      </div>
+      <div class="barrow">
+        <div class="cap"><span><span class="m">DB</span> : <span class="m">DC</span></span><span id="pD"></span></div>
+        <div class="bar"><i id="bD1"></i><i id="bD2"></i></div>
+      </div>
+      <div class="status" id="status"></div>
+    </section>
+
+    <section class="angles">
+      <span>∠<span class="m">A</span> (내각)</span><b id="aA"></b>
+      <span>∠<span class="m">A</span>의 외각</span><b id="aE"></b>
+      <span>이등분된 두 각</span><b id="aH"></b>
+    </section>
+
+    <section class="toggles">
+      <label><input type="checkbox" id="tInt"> <span>내각의 이등분선과 내분점 <span class="m ci">D′</span>도 표시</span></label>
+      <div class="extra" id="intInfo" hidden></div>
+      <label><input type="checkbox" id="tProof"> <span>증명 보조선 표시 (점 <span class="m">C</span>를 지나 <span class="m">AD</span>에 평행한 직선)</span></label>
+      <div class="extra" id="proofInfo" hidden></div>
+    </section>
+
+    <section class="btns">
+      <button id="rand">무작위 삼각형</button>
+      <button id="reset">처음 상태로</button>
+    </section>
+
+    <section>
+      <details>
+        <summary>왜 성립할까? (보조선을 이용한 증명)</summary>
+        <ol>
+          <li>점 <span class="m">C</span>를 지나고 <span class="m">AD</span>에 평행한 직선이 직선 <span class="m">AB</span>와 만나는 점을 <span class="m cp">F</span>라고 합니다.</li>
+          <li><span class="m">FC</span> ∥ <span class="m">AD</span>이므로 동위각과 엇각이 각각 외각의 절반과 같아져 ∠<span class="m">AFC</span> = ∠<span class="m">ACF</span>. 따라서 △<span class="m">AFC</span>는 이등변삼각형이고 <span class="m">AF</span> = <span class="m">AC</span>입니다.</li>
+          <li>점 <span class="m">B</span>에서 뻗은 두 직선을 평행선 <span class="m">FC</span>, <span class="m">AD</span>가 자르므로 <span class="m">BF</span> : <span class="m">BA</span> = <span class="m">BC</span> : <span class="m">BD</span>, 즉 <span class="m">AB</span> : <span class="m">AF</span> = <span class="m">DB</span> : <span class="m">DC</span>.</li>
+          <li><span class="m">AF</span> = <span class="m">AC</span>를 대입하면 <span class="m">AB</span> : <span class="m">AC</span> = <span class="m">DB</span> : <span class="m">DC</span>.</li>
+        </ol>
+      </details>
+    </section>
+
+    <section>
+      <p class="help"><span class="m">AB</span> = <span class="m">AC</span>이면 외각의 이등분선이 <span class="m">BC</span>와 평행해져 점 <span class="m">D</span>가 생기지 않습니다. 두 변의 길이를 비슷하게 맞춰 가며 <span class="m">D</span>가 멀리 달아나는 모습을 확인해 보세요.</p>
+    </section>
+  </aside>
+</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const svg = $('#cv');
+  const V = {
+    add:(a,b)=>({x:a.x+b.x,y:a.y+b.y}), sub:(a,b)=>({x:a.x-b.x,y:a.y-b.y}), mul:(a,k)=>({x:a.x*k,y:a.y*k}),
+    len:a=>Math.hypot(a.x,a.y), dot:(a,b)=>a.x*b.x+a.y*b.y, cross:(a,b)=>a.x*b.y-a.y*b.x,
+    norm:a=>{const l=Math.hypot(a.x,a.y)||1; return {x:a.x/l,y:a.y/l};}, dist:(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),
+    perp:a=>({x:-a.y,y:a.x}), neg:a=>({x:-a.x,y:-a.y})
+  };
+  const DEFAULT = {A:{x:-120,y:-70}, B:{x:-150,y:80}, C:{x:150,y:80}};
+  const clone = o => JSON.parse(JSON.stringify(o));
+  let pts = clone(DEFAULT);
+  const opts = {internal:false, proof:false};
+  const view = {s:1, ox:0, oy:0};
+  let fitted = false;
+
+  const toS = p => ({x:p.x*view.s+view.ox, y:p.y*view.s+view.oy});
+  const toW = q => ({x:(q.x-view.ox)/view.s, y:(q.y-view.oy)/view.s});
+  const f1 = n => n.toFixed(1);
+  const fmt = n => isFinite(n) ? (Math.abs(n) >= 1e5 ? n.toExponential(2) : n.toFixed(2)) : '∞';
+  const deg = r => (r*180/Math.PI).toFixed(1) + '°';
+
+  function compute(){
+    const {A,B,C} = pts;
+    const ab = V.dist(A,B), ac = V.dist(A,C), bc = V.dist(B,C);
+    const uAB = V.norm(V.sub(B,A)), uAC = V.norm(V.sub(C,A));
+    const sinA = Math.abs(V.cross(uAB,uAC));
+    const degenerate = ab < 1e-6 || ac < 1e-6 || bc < 1e-6 || sinA < 0.005;
+    const e = V.sub(uAB,uAC), en = V.norm(e);
+    const bcv = V.sub(C,B);
+    const den = V.cross(e,bcv);
+    const parallel = Math.abs(V.cross(en, V.norm(bcv))) < 1e-4;
+    let D = null, t = 0;
+    if(!degenerate && !parallel){
+      t = V.cross(V.sub(B,A), bcv) / den;
+      D = V.add(A, V.mul(e,t));
+    }
+    const Di = degenerate ? null : V.add(B, V.mul(bcv, ab/(ab+ac)));
+    let F = null;
+    const dF = V.cross(en,uAB);
+    if(!degenerate && Math.abs(dF) > 1e-9){
+      const k = V.cross(V.sub(A,C), uAB) / dF;
+      F = V.add(C, V.mul(en,k));
+    }
+    const angA = Math.acos(Math.max(-1,Math.min(1,V.dot(uAB,uAC))));
+    return {A,B,C,ab,ac,bc,uAB,uAC,en,t,D,Di,F,angA,degenerate,parallel,
+      db: D ? V.dist(D,B) : Infinity, dc: D ? V.dist(D,C) : Infinity};
+  }
+
+  // ---------- drawing helpers (screen space) ----------
+  const L = (p,q,cls) => `<line x1="${f1(p.x)}" y1="${f1(p.y)}" x2="${f1(q.x)}" y2="${f1(q.y)}" class="${cls}"/>`;
+  const inf = (p,d,cls) => L(V.add(p,V.mul(d,-6000)), V.add(p,V.mul(d,6000)), cls);
+  const T = (p,txt,cls,anchor='middle') => `<text x="${f1(p.x)}" y="${f1(p.y)}" class="${cls}" text-anchor="${anchor}" dominant-baseline="middle">${txt}</text>`;
+  function arc(S,v1,v2,r,withWedge){
+    const p1 = V.add(S,V.mul(v1,r)), p2 = V.add(S,V.mul(v2,r));
+    const sw = V.cross(v1,v2) > 0 ? 1 : 0;
+    let s = '';
+    if(withWedge) s += `<path class="wedge" d="M${f1(S.x)} ${f1(S.y)}L${f1(p1.x)} ${f1(p1.y)}A${r} ${r} 0 0 ${sw} ${f1(p2.x)} ${f1(p2.y)}Z"/>`;
+    s += `<path class="arc" d="M${f1(p1.x)} ${f1(p1.y)}A${r} ${r} 0 0 ${sw} ${f1(p2.x)} ${f1(p2.y)}"/>`;
+    const vm = V.norm(V.add(v1,v2));
+    s += L(V.add(S,V.mul(vm,r-6)), V.add(S,V.mul(vm,r+6)), 'arc');
+    return s;
+  }
+  function bar(p,q,n,off,cls,capcls){
+    const a = V.add(p,V.mul(n,off)), b = V.add(q,V.mul(n,off));
+    return L(a,b,cls) + L(V.add(a,V.mul(n,-5)),V.add(a,V.mul(n,5)),capcls) + L(V.add(b,V.mul(n,-5)),V.add(b,V.mul(n,5)),capcls);
+  }
+  function tick(p,q,count,cls){
+    const m = V.mul(V.add(p,q),.5), d = V.norm(V.sub(q,p)), n = V.perp(d);
+    let s='';
+    for(let i=0;i<count;i++){
+      const c = V.add(m, V.mul(d,(i-(count-1)/2)*5));
+      s += L(V.add(c,V.mul(n,-6)), V.add(c,V.mul(n,6)), cls);
+    }
+    return s;
+  }
+  function grid(w,h){
+    const target = 55/view.s;
+    const p = Math.pow(10, Math.floor(Math.log10(target)));
+    let step = p*10;
+    for(const m of [1,2,5,10]){ if(p*m >= target){ step = p*m; break; } }
+    const w0 = toW({x:0,y:0}), w1 = toW({x:w,y:h});
+    let d='', dAxis='';
+    for(let x=Math.ceil(w0.x/step)*step; x<=w1.x; x+=step){
+      const sx = f1(x*view.s+view.ox);
+      if(Math.abs(x) < step*1e-6) dAxis += `M${sx} 0V${h}`; else d += `M${sx} 0V${h}`;
+    }
+    for(let y=Math.ceil(w0.y/step)*step; y<=w1.y; y+=step){
+      const sy = f1(y*view.s+view.oy);
+      if(Math.abs(y) < step*1e-6) dAxis += `M0 ${sy}H${w}`; else d += `M0 ${sy}H${w}`;
+    }
+    return `<path class="grid" d="${d}"/><path class="axisline" d="${dAxis}"/>`;
+  }
+
+  let activePt = null;
+
+  function render(){
+    const w = svg.clientWidth, h = svg.clientHeight;
+    if(!w || !h) return;
+    if(!fitted){ fit(); fitted = true; }
+    const g = compute();
+    const A = toS(g.A), B = toS(g.B), C = toS(g.C);
+    const cen = V.mul(V.add(V.add(A,B),C),1/3);
+    const bcd = V.norm(V.sub(C,B));
+    let n = V.perp(bcd);
+    if(V.dot(n, V.sub(A,B)) > 0) n = V.neg(n);   // n points away from A
+
+    let s = grid(w,h);
+
+    // faint infinite line BC
+    s += inf(B, bcd, 'faint');
+
+    let Ds = null;
+    if(!g.degenerate){
+      // external angle side
+      const side = g.t >= 0 || !g.D;
+      const r1 = side ? g.uAB : V.neg(g.uAB);
+      const ebd = side ? g.en : V.neg(g.en);
+      const r2 = side ? V.neg(g.uAC) : g.uAC;
+      // extension of CA (or BA) beyond A
+      s += L(A, V.add(A, V.mul(r2, 150)), 'extA');
+      if(!side) s += L(A, V.add(A, V.mul(r1, 150)), 'extA');
+      // bisector line
+      s += inf(A, g.en, 'bisfar');
+      if(g.D){
+        Ds = toS(g.D);
+        s += L(A, V.add(Ds, V.mul(V.norm(V.sub(Ds,A)),30)), 'bis');
+        // extension of BC toward D
+        const near = V.dist(Ds,B) < V.dist(Ds,C) ? B : C;
+        s += L(Ds, near, 'ext');
+      }
+      s += arc(A, r1, ebd, 40, true) + arc(A, ebd, r2, 40, true);
+    }
+
+    // internal bisector
+    if(opts.internal && g.Di){
+      const Is = toS(g.Di);
+      s += L(A, Is, 'int');
+    }
+    // proof construction
+    if(opts.proof && g.F && g.D){
+      const Fs = toS(g.F);
+      s += L(C, Fs, 'proof');
+      s += L(A, Fs, 'proof');
+      s += tick(A, Fs, 2, 'proofmark') + tick(A, C, 2, 'proofmark');
+    }
+
+    // triangle sides
+    s += L(B, C, 'bc');
+    s += L(A, B, 'ab');
+    s += L(A, C, 'ac');
+
+    // DB / DC bars
+    if(Ds){
+      s += bar(Ds, B, n, 16, 'bar-b', 'cap-b');
+      s += bar(Ds, C, n, 34, 'bar-c', 'cap-c');
+      const mB = V.add(V.mul(V.add(Ds,B),.5), V.mul(n,16));
+      const mC = V.add(V.mul(V.add(Ds,C),.5), V.mul(n,34));
+      s += T(V.add(mB,V.mul(n,-10)), 'DB ' + fmt(g.db), 'len len-b');
+      s += T(V.add(mC,V.mul(n,12)), 'DC ' + fmt(g.dc), 'len len-c');
+    }
+
+    // side length labels
+    const sideLabel = (P,Q,other,txt,cls) => {
+      const m = V.mul(V.add(P,Q),.5);
+      let nn = V.perp(V.norm(V.sub(Q,P)));
+      if(V.dot(nn, V.sub(other,m)) > 0) nn = V.neg(nn);
+      return T(V.add(m, V.mul(nn,15)), txt, cls);
+    };
+    s += sideLabel(A,B,C,'AB ' + fmt(g.ab),'len len-b');
+    s += sideLabel(A,C,B,'AC ' + fmt(g.ac),'len len-c');
+
+    // points
+    if(opts.internal && g.Di){
+      const Is = toS(g.Di);
+      s += `<circle cx="${f1(Is.x)}" cy="${f1(Is.y)}" r="5.5" class="ipt"/>`;
+      s += T(V.add(Is, V.mul(n,-18)), 'D′', 'lbl lbl-i');
+    }
+    if(opts.proof && g.F && g.D){
+      const Fs = toS(g.F);
+      s += `<circle cx="${f1(Fs.x)}" cy="${f1(Fs.y)}" r="5.5" class="fpt"/>`;
+      const fo = V.norm(V.sub(Fs,cen));
+      s += T(V.add(Fs, V.mul(fo,18)), 'F', 'lbl lbl-f');
+    }
+    if(Ds){
+      s += `<circle cx="${f1(Ds.x)}" cy="${f1(Ds.y)}" r="6.5" class="dpt"/>`;
+      s += T(V.add(Ds, V.mul(n,-20)), 'D', 'lbl lbl-d');
+    }
+    const vtx = (k,P,lp) => {
+      const hitR = 22;
+      return `<circle data-pt="${k}" cx="${f1(P.x)}" cy="${f1(P.y)}" r="${hitR}" class="hit"/>` +
+             `<circle cx="${f1(P.x)}" cy="${f1(P.y)}" r="7.5" class="vtx${activePt===k?' active':''}"/>` +
+             T(lp, k, 'lbl');
+    };
+    const midBC = V.mul(V.add(B,C),.5);
+    const aDir = V.norm(V.sub(A,cen));
+    s += vtx('B', B, V.add(V.add(B, V.mul(V.norm(V.sub(B,midBC)),16)), V.mul(n,-16)));
+    s += vtx('C', C, V.add(V.add(C, V.mul(V.norm(V.sub(C,midBC)),16)), V.mul(n,-16)));
+    s += vtx('A', A, V.add(A, V.mul(aDir, 22)));
+    svg.innerHTML = s;
+    // A label placed opposite to the external wedge so it doesn't collide with arcs
+    placeALabel(g, A);
+
+    const off = Ds && (Ds.x < 0 || Ds.x > w || Ds.y < 0 || Ds.y > h);
+    $('#offhint').classList.toggle('show', !!off);
+    updatePanel(g);
+  }
+
+  function placeALabel(g, A){
+    // The wedge occupies directions around en (or -en). Put the label along the internal bisector, outside the triangle.
+    const inner = V.norm(V.add(g.uAB, g.uAC));
+    const pos = V.add(A, V.mul(inner, -22));
+    const texts = svg.querySelectorAll('text.lbl');
+    for(const t of texts){
+      if(t.textContent === 'A'){ t.setAttribute('x', f1(pos.x)); t.setAttribute('y', f1(pos.y)); }
+    }
+  }
+
+  function setBar(id1,id2,a,b){
+    const tot = a+b;
+    const pa = isFinite(tot) && tot > 0 ? a/tot*100 : 50;
+    $(id1).style.width = pa + '%';
+    $(id2).style.width = (100-pa) + '%';
+    return pa;
+  }
+
+  function updatePanel(g){
+    $('#vAB').textContent = fmt(g.ab);
+    $('#vAC').textContent = fmt(g.ac);
+    $('#vDB').textContent = g.D ? fmt(g.db) : '∞';
+    $('#vDC').textContent = g.D ? fmt(g.dc) : '∞';
+    const rS = g.ab / g.ac;
+    const rD = g.D ? g.db / g.dc : NaN;
+    $('#rS').innerHTML = `<span class="m">AB</span>/<span class="m">AC</span> = ${isFinite(rS)?rS.toFixed(4):'–'}`;
+    $('#rD').innerHTML = `<span class="m">DB</span>/<span class="m">DC</span> = ${isFinite(rD)?rD.toFixed(4):'–'}`;
+
+    const pS = setBar('#bS1','#bS2', g.ab, g.ac);
+    $('#pS').textContent = `${pS.toFixed(1)}% : ${(100-pS).toFixed(1)}%`;
+    if(g.D){
+      const pD = setBar('#bD1','#bD2', g.db, g.dc);
+      $('#pD').textContent = `${pD.toFixed(1)}% : ${(100-pD).toFixed(1)}%`;
+    } else {
+      setBar('#bD1','#bD2', 1, 1);
+      $('#pD').textContent = '정의되지 않음';
+    }
+
+    const st = $('#status');
+    st.className = 'status';
+    if(g.degenerate){
+      st.classList.add('warn');
+      st.textContent = '세 점이 거의 한 직선 위에 있어 삼각형이 되지 않습니다. 꼭짓점을 조금 떨어뜨려 보세요.';
+    } else if(!g.D){
+      st.classList.add('warn');
+      st.textContent = 'AB = AC라서 외각의 이등분선이 BC와 평행합니다. 교점 D가 없습니다.';
+    } else {
+      const err = Math.abs(rS - rD);
+      st.classList.add('ok');
+      const side = g.ab < g.ac ? 'B' : 'C';
+      st.textContent = `두 비가 일치합니다 (차이 ${err < 1e-12 ? '< 1e-12' : err.toExponential(1)}). D는 ${side} 쪽 바깥에 있어요 — 더 짧은 변 쪽입니다.`;
+    }
+
+    $('#aA').textContent = g.degenerate ? '–' : deg(g.angA);
+    $('#aE').textContent = g.degenerate ? '–' : deg(Math.PI - g.angA);
+    $('#aH').textContent = g.degenerate ? '–' : `${deg((Math.PI - g.angA)/2)} = ${deg((Math.PI - g.angA)/2)}`;
+
+    const ii = $('#intInfo');
+    ii.hidden = !opts.internal;
+    if(opts.internal && g.Di){
+      const d1 = V.dist(g.Di,g.B), d2 = V.dist(g.Di,g.C);
+      ii.innerHTML = `D′B/D′C = ${(d1/d2).toFixed(4)} — 내분점 D′와 외분점 D가 BC를 같은 비로 나눕니다(조화분할).`;
+    }
+    const pi = $('#proofInfo');
+    pi.hidden = !opts.proof;
+    if(opts.proof){
+      pi.innerHTML = (g.F && g.D) ? `AF = ${fmt(V.dist(g.A,g.F))}, AC = ${fmt(g.ac)} — 두 길이가 같습니다.` : '점 D가 있을 때만 보조선을 그릴 수 있어요.';
+    }
+  }
+
+  // ---------- view ----------
+  function fit(){
+    const w = svg.clientWidth, h = svg.clientHeight;
+    if(!w || !h) return;
+    const g = compute();
+    const ps = [pts.A, pts.B, pts.C];
+    const size = Math.max(g.ab, g.ac, g.bc, 1);
+    if(g.D && V.dist(g.D, pts.A) < size*25) ps.push(g.D);
+    if(opts.proof && g.F && V.dist(g.F, pts.A) < size*25) ps.push(g.F);
+    let minx=Infinity,miny=Infinity,maxx=-Infinity,maxy=-Infinity;
+    for(const p of ps){ minx=Math.min(minx,p.x); maxx=Math.max(maxx,p.x); miny=Math.min(miny,p.y); maxy=Math.max(maxy,p.y); }
+    const pad = Math.min(80, Math.min(w,h)*0.14);
+    const bw = Math.max(maxx-minx, 1), bh = Math.max(maxy-miny, 1);
+    view.s = Math.max(0.005, Math.min(4, Math.min((w-2*pad)/bw, (h-2*pad)/bh)));
+    view.ox = w/2 - (minx+maxx)/2*view.s;
+    view.oy = h/2 - (miny+maxy)/2*view.s;
+  }
+  function zoomAt(m, f){
+    const wpt = toW(m);
+    view.s = Math.max(0.005, Math.min(20, view.s*f));
+    view.ox = m.x - wpt.x*view.s;
+    view.oy = m.y - wpt.y*view.s;
+    req();
+  }
+
+  let raf = 0;
+  function req(){ if(!raf) raf = requestAnimationFrame(()=>{ raf = 0; render(); }); }
+
+  // ---------- interaction ----------
+  const mouse = e => { const r = svg.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; };
+  let drag = null;
+  svg.addEventListener('pointerdown', e => {
+    if(drag) return;
+    const m = mouse(e);
+    const t = e.target.closest ? e.target.closest('[data-pt]') : null;
+    if(t){
+      const k = t.getAttribute('data-pt');
+      const P = toS(pts[k]);
+      drag = {id:e.pointerId, type:'pt', k, dx:P.x-m.x, dy:P.y-m.y};
+      activePt = k;
+    } else {
+      drag = {id:e.pointerId, type:'pan', sx:m.x, sy:m.y, ox:view.ox, oy:view.oy};
+    }
+    svg.setPointerCapture(e.pointerId);
+    svg.classList.add('dragging');
+    e.preventDefault();
+    req();
+  });
+  svg.addEventListener('pointermove', e => {
+    if(!drag || e.pointerId !== drag.id) return;
+    const m = mouse(e);
+    if(drag.type === 'pt'){
+      pts[drag.k] = toW({x:m.x+drag.dx, y:m.y+drag.dy});
+    } else {
+      view.ox = drag.ox + (m.x - drag.sx);
+      view.oy = drag.oy + (m.y - drag.sy);
+    }
+    req();
+  });
+  const end = e => {
+    if(!drag || e.pointerId !== drag.id) return;
+    drag = null; activePt = null;
+    svg.classList.remove('dragging');
+    req();
+  };
+  svg.addEventListener('pointerup', end);
+  svg.addEventListener('pointercancel', end);
+  svg.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoomAt(mouse(e), Math.exp(-e.deltaY*0.0015));
+  }, {passive:false});
+
+  const center = () => ({x:svg.clientWidth/2, y:svg.clientHeight/2});
+  $('#zin').onclick = () => zoomAt(center(), 1.25);
+  $('#zout').onclick = () => zoomAt(center(), 0.8);
+  $('#fitb').onclick = () => { fit(); req(); };
+  const hint = $('#offhint');
+  hint.onclick = () => { fit(); req(); };
+  hint.onkeydown = e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fit(); req(); } };
+
+  $('#tInt').onchange = e => { opts.internal = e.target.checked; req(); };
+  $('#tProof').onchange = e => { opts.proof = e.target.checked; fit(); req(); };
+  $('#reset').onclick = () => { pts = clone(DEFAULT); fit(); req(); };
+  $('#rand').onclick = () => {
+    for(let i=0;i<200;i++){
+      const r = () => ({x:(Math.random()-.5)*360, y:(Math.random()-.5)*260});
+      const c = {A:r(), B:r(), C:r()};
+      const ab = V.dist(c.A,c.B), ac = V.dist(c.A,c.C), bc = V.dist(c.B,c.C);
+      const area = Math.abs(V.cross(V.sub(c.B,c.A), V.sub(c.C,c.A)))/2;
+      const ratio = Math.min(ab,ac)/Math.max(ab,ac);
+      if(Math.min(ab,ac,bc) > 70 && area > 6000 && ratio < 0.8 && ratio > 0.3){ pts = c; break; }
+    }
+    fit(); req();
+  };
+
+  new ResizeObserver(() => { if(!fitted){ req(); } else { req(); } }).observe(svg);
+  req();
+})();
+</script>
+</body>
+</html>
